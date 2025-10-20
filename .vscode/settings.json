@@ -1,0 +1,45 @@
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "commonjs",
+    "module",
+    "astro", // Enable .astro
+    "typescript", // Enable .ts
+    "typescriptreact" // Enable .tsx
+  ],
+  "stylelint.validate": ["css", "scss", "astro"],
+  "scss.validate": false,
+  "css.validate": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.documentSelectors": ["**/*.astro"],
+  "editor.formatOnSave": true, // ファイル保存時にPrettierでフォーマット（Formatting Toggleでも切り替え可能）
+  "editor.formatOnType": true, // コード整形
+  "editor.formatOnPaste": true, // コード整形
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "never",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll": "explicit"
+  },
+  "insert-br-tag.enableOnLanguage": ["markdown", "html", "njk", "nunjucks", "vue", "php", "astro", "react", "jsx", "tsx"],
+  "scss.lint.unknownAtRules": "ignore",
+  "tailwindCSS.includeLanguages": {
+    "astro": "html"
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  // Github Copilotのコミットメッセージ生成カスタム指示
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "コミットメッセージは必ず日本語で記述してください"
+    },
+    {
+      "text": "コミット種別は次の通りです。fix:バグ修正、hotfix:クリティカルなバグ修正、add:追加、update:機能修正（バグではない）、change:仕様変更、clean:整理、disable:無効化（コメントアウト等）、remove:削除（ファイル）、upgrade:バージョンアップ、revert:変更取り消し、tweak:調整、improve:改善、feat: 新しい機能、refactor:リファクタリング、docs:ドキュメントのみの変更、style:スタイル変更"
+    },
+    {
+      "text": "その後、リスト形式でファイルごとの詳細な変更内容を記述してください"
+    }
+  ]
+}

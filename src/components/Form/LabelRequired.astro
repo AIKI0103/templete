@@ -1,0 +1,7 @@
+---
+const { isRequired = false, className = '' } = Astro.props
+---
+
+<span data-component="LabelRequired" class:list={['c-form-header__label-status c-form-status', { 'c-form-status--required': isRequired }, className]}>
+  {isRequired ? '必須' : '任意'}
+</span>

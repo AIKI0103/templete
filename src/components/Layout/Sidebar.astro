@@ -1,0 +1,55 @@
+---
+const { isHome, page, hero } = Astro.props
+---
+
+<div data-component="Sidebar" class="px-[2rem] pb-[2rem] lg:px-0">
+  <aside class="c-sidebar">
+    <div class="c-sidebar__header">
+      <p class="c-sidebar__header-label">カテゴリー</p>
+    </div>
+
+    <div class="c-sidebar__body">
+      <ul class="c-sidebar-nav">
+        <li><a href="/news/">全て<svg width="16" height="16" class="" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-circle-arrow-right`}></use></svg></a></li>
+        <li>
+          <a href="/news/">お知らせ<svg width="16" height="16" class="" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-circle-arrow-right`}></use></svg></a>
+        </li>
+        <li>
+          <a href="/news/">重要なお知らせ<svg width="16" height="16" class="" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-circle-arrow-right`}></use></svg></a>
+        </li>
+        <li>
+          <a href="/news/">その他<svg width="16" height="16" class="" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-circle-arrow-right`}></use></svg></a>
+          <ul>
+            <li><a href="/news/">子カテゴリー</a></li>
+            <li><a href="/news/">子カテゴリー</a></li>
+            <li>
+              <a href="/news/">子カテゴリー</a>
+              <ul>
+                <li><a href="/news/">孫カテゴリー</a></li>
+                <li><a href="/news/">孫カテゴリー</a></li>
+                <li><a href="/news/">孫カテゴリー</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+  <aside class="c-sidebar">
+    <div class="c-sidebar__header">
+      <p class="c-sidebar__header-label">アーカイブ</p>
+    </div>
+    <div class="c-sidebar__body p-[2rem]">
+      <span class="c-form-selectbox text-[1.6rem]">
+        <select aria-label="アーカイブメニュー" name="archive" id="pulldown-archive" onchange="document.location.href=this.options[this.selectedIndex].value;">
+          <option value="">全ての期間</option>
+          <option value="">2024年4月（10）</option>
+          <option value="">2024年3月（10）</option>
+          <option value="">2024年2月（10）</option>
+          <option value="">2024年1月（10）</option>
+        </select>
+      </span>
+    </div>
+  </aside>
+</div>

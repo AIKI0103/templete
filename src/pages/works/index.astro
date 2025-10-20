@@ -1,0 +1,161 @@
+---
+import Container from '../../components/Blocks/Container.astro'
+import Flex from '../../components/Blocks/Flex.astro'
+import HeadingLine from '../../components/Blocks/HeadingLine.astro'
+import FeedWorks from '../../components/Feed/FeedWorks.astro'
+import Layout from '../../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'page', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'works',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: '実績', // 基本必須（titleTagが優先される）
+  // titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: '実績',
+  subTitle: 'Works',
+  bgImage: 'works',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: seo.title,
+    href: '',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <div class="py-[3rem] md:py-[7rem]">
+    <Container size="base" className="">
+      <div class="mb-[5rem] md:mb-[9rem]">
+        <details class="c-details-category" open>
+          <summary class="c-details-category__summary">
+            <svg paint-order="stroke" width="16" height="16" class="mr-[1rem]" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-circle-arrow-down`}></use></svg>
+            <span class="c-details-category__summary-label">カテゴリを選択する</span>
+          </summary>
+          <div class="c-details-category__content" data-details="content">
+            <div class="c-details-category__body">
+              <ul class="c-details-category__tags">
+                {
+                  ['カテゴリーA', 'カテゴリーB', 'カテゴリーC'].map((tags) => {
+                    return (
+                      <li>
+                        <a href="/works/" class="c-details-category__tag">
+                          {tags}
+                        </a>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <HeadingLine className="mb-[3rem] md:mb-[5rem]">ここにカテゴリ名が入ります</HeadingLine>
+
+      <Flex fit={false} className="[--gap-x:1.5rem] [--gap-y:1.5rem]" classNameWrap="">
+        {
+          [
+            {
+              href: '/works/single/',
+              className: '',
+              imgSrc: '/assets/images/noimage/noimage-270x165',
+              area: '熊本県',
+              title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              text: 'テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。',
+              tags: ['カテゴリーA'],
+            },
+            {
+              href: '/works/single/',
+              className: '',
+              imgSrc: '/assets/images/noimage/noimage-270x165',
+              area: '熊本県',
+              title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              text: 'テキストが入ります。',
+              tags: ['カテゴリーB', 'カテゴリーC'],
+            },
+            {
+              href: '/works/single/',
+              className: '',
+              imgSrc: '/assets/images/noimage/noimage-270x165',
+              area: '熊本県',
+              title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              text: 'テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。',
+              tags: ['カテゴリーA'],
+            },
+            {
+              href: '/works/single/',
+              className: '',
+              imgSrc: '/assets/images/noimage/noimage-270x165',
+              area: '熊本県',
+              title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              text: 'テキストが入ります。',
+              tags: ['カテゴリーB', 'カテゴリーC'],
+            },
+            {
+              href: '/works/single/',
+              className: '',
+              imgSrc: '/assets/images/noimage/noimage-270x165',
+              area: '熊本県',
+              title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              text: 'テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。',
+              tags: ['カテゴリーA'],
+            },
+            {
+              href: '/works/single/',
+              className: '',
+              imgSrc: '/assets/images/noimage/noimage-270x165',
+              area: '熊本県',
+              title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              text: 'テキストが入ります。',
+              tags: ['カテゴリーB', 'カテゴリーC'],
+            },
+            {
+              href: '/works/single/',
+              className: '',
+              imgSrc: '/assets/images/noimage/noimage-270x165',
+              area: '熊本県',
+              title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              text: 'テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。',
+              tags: ['カテゴリーA'],
+            },
+            {
+              href: '/works/single/',
+              className: '',
+              imgSrc: '/assets/images/noimage/noimage-270x165',
+              area: '熊本県',
+              title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              text: 'テキストが入ります。',
+              tags: ['カテゴリーB', 'カテゴリーC'],
+            },
+          ].map((item) => {
+            return (
+              <div class="w-full md:w-1/2 lg:w-1/4">
+                <FeedWorks href={item.href} className={item.className} imgSrc={item.imgSrc} area={item.area} title={item.title} text={item.text} tags={item.tags} />
+              </div>
+            )
+          })
+        }
+      </Flex>
+    </Container>
+  </div>
+</Layout>

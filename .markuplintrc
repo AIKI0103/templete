@@ -1,0 +1,19 @@
+{
+  "parser": {
+    ".astro$": "@markuplint/astro-parser"
+  },
+  "parserOptions": {
+    "ignoreFrontMatter": true
+  },
+  "extends": [
+    "markuplint:recommended"
+  ],
+  "nodeRules": [
+    {
+      "selector": "html",
+      "rules": {
+        "character-reference": false
+      }
+    }
+  ]
+}

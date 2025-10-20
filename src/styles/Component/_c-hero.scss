@@ -1,0 +1,50 @@
+/* ヒーロー
+```
+```
+*/
+.c-hero {
+  --hero-primary-size: 32; // ヒーロー内で1番目に大きなフォントサイズを指定（これを基準に全体の比率を調整する）
+  --hero-primary-size-rem: 3.2rem; // ヒーロー内で1番目に大きなフォントサイズを指定（rem指定）
+  --hero-primary-size-rem-md: 2.4rem; // ヒーロー内で1番目に大きなフォントサイズを指定（rem指定/md以下）
+  --hero-secondary-size: 16; // ヒーロー内で2番目に大きなフォントサイズを指定
+
+  @apply relative z-0 bg-gray;
+
+  // .c-hero__container
+  &__container {
+    @apply mx-auto flex h-auto min-h-[13rem] w-container max-w-[calc(100%-4rem)] items-center justify-center lg:h-[20rem];
+  }
+
+  // .c-hero-heading
+  &-heading {
+    @apply flex flex-col items-center justify-center text-center leading-[1.4] text-white;
+    @apply text-[clamp(var(--hero-primary-size-rem-md),calc(var(--hero-primary-size)/768*100vw),var(--hero-primary-size-rem))];
+
+    // .c-hero-heading-main
+    &-main {
+      @apply font-bold;
+      @apply text-[calc(var(--hero-primary-size)/var(--hero-primary-size)*1em)];
+
+      // .c-hero-heading-main__label
+      &__label {
+        @apply whitespace-pre-line text-[1em];
+      }
+    }
+
+    // .c-hero-heading-sub
+    &-sub {
+      @apply mt-[calc(8/var(--hero-secondary-size)*1em)] font-bold;
+      @apply text-[max(1.4rem,calc(var(--hero-secondary-size)/var(--hero-primary-size)*1em))];
+
+      // .c-hero-heading-sub__label
+      &__label {
+        @apply text-[1em];
+      }
+    }
+  }
+
+  // .c-hero__bg
+  &__bg {
+    @apply absolute left-0 top-0 -z-[1] h-full w-full object-cover;
+  }
+}

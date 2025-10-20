@@ -1,0 +1,7 @@
+/* テキストエリア
+```
+```
+*/
+.c-textarea {
+  @apply text-[clamp(1.4rem,calc(16/768*100vw),1.6rem)] leading-[2];
+}

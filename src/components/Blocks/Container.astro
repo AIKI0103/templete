@@ -1,0 +1,40 @@
+---
+interface Props {
+  size?: 'xs' | 'sm' | 'md' | 'base' | 'lg' | 'design' | 'full'
+  className?: string
+  id?: string
+}
+
+const { size = 'base', className, id } = Astro.props
+
+// 横幅のサイズを指定
+let width = ''
+
+switch (size) {
+  case 'xs':
+    width = 'c-container--xs'
+    break
+  case 'sm':
+    width = 'c-container--sm'
+    break
+  case 'md':
+    width = 'c-container--md'
+    break
+  case 'base':
+    width = ''
+    break
+  case 'lg':
+    width = 'c-container--lg'
+    break
+  case 'design':
+    width = 'c-container--design'
+    break
+  case 'full':
+    width = 'c-container--full'
+    break
+}
+---
+
+<div data-component="Container" id={id && id} class:list={['c-container', width, className]}>
+  <slot />
+</div>

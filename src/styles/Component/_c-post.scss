@@ -1,0 +1,79 @@
+/* 記事詳細
+```
+```
+*/
+.c-post {
+  // .c-post__header
+  &__header {
+    @apply border-0 border-t-[0.2rem] border-solid border-text py-[2rem] md:border-t-[0.4rem] md:py-[1.6rem] lg:pb-[2.5rem];
+  }
+
+  // .c-post__date
+  &__date {
+    @apply mb-[0.5rem] flex items-center px-[2rem] text-[clamp(1.2rem,calc(14/768*100vw),1.4rem)] font-medium leading-none lg:px-[2.5rem];
+  }
+
+  // .c-post__title
+  &__title {
+    @apply mb-[1.5rem] w-full border-0 border-b-[0.1rem] border-gray px-[2rem] pb-[2rem] text-[clamp(2.2rem,calc(30/768*100vw),3rem)] font-bold leading-[1.4] md:mb-[1.2rem] lg:px-[2.5rem] lg:pb-[3rem];
+    border-bottom-style: dashed;
+  }
+
+  // .c-post__tags
+  &__tags {
+    @apply flex list-none flex-wrap px-[2rem] pb-[0.2rem] md:px-[2.2rem];
+
+    li {
+      @apply px-[0.5rem] py-[0.35rem];
+    }
+  }
+
+  // .c-post__tag
+  &__tag {
+    @apply flex justify-center rounded-[50vh] border-[0.1rem] border-solid bg-[var(--tag-bg-color)] px-[1.5rem] py-[0.3rem] text-[1.2rem] leading-[1.4] text-[var(--tag-color)] md:min-w-[9rem];
+  }
+}
+
+.c-post-works {
+  // .c-post-works__wrap
+  &__wrap {
+    @apply px-[2rem] lg:px-0;
+  }
+
+  // .c-post-works__header
+  &__header {
+    @apply mb-[2rem] md:mb-[4rem];
+  }
+
+  // .c-post-works__area
+  &__area {
+    @apply mb-[1rem] inline-block bg-gray px-[1.5rem] py-[0.2rem] text-[1.2rem] text-white md:px-[2.2rem] md:py-[0.5rem];
+  }
+
+  // .c-post-works__title
+  &__title {
+    --borderBase: theme('colors.gray.DEFAULT');
+    --borderColor: theme('colors.text.DEFAULT');
+
+    @apply relative mb-[2rem] pb-[2.5rem] text-[clamp(2.2rem,calc(30/768*100vw),3rem)] font-bold leading-[1.4];
+
+    &::before {
+      @apply absolute bottom-0 left-0 h-[0.4rem] w-full content-[''];
+      background: linear-gradient(90deg, var(--borderColor) 0%, var(--borderColor) calc(120 / 770 * 100%), var(--borderBase) calc(120 / 770 * 100%), var(--borderBase) 100%);
+    }
+  }
+
+  // .c-post-works__tags
+  &__tags {
+    @apply flex list-none flex-wrap pl-0;
+
+    li {
+      @apply px-[0.5rem] py-[0.35rem];
+    }
+  }
+
+  // .c-post-works__tag
+  &__tag {
+    @apply flex justify-center rounded-[50vh] border-[0.1rem] border-solid bg-[var(--tag-bg-color)] px-[1.5rem] py-[0.3rem] text-[1.2rem] leading-[1.4] text-[var(--tag-color)] md:min-w-[9rem];
+  }
+}

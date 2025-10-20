@@ -1,0 +1,365 @@
+---
+import Btn from '../../components/Blocks/Btn.astro'
+import Container from '../../components/Blocks/Container.astro'
+import Flex from '../../components/Blocks/Flex.astro'
+import HeadingLine from '../../components/Blocks/HeadingLine.astro'
+import HeadingPrimary from '../../components/Blocks/HeadingPrimary.astro'
+import FeedNews from '../../components/Feed/FeedNews.astro'
+import Layout from '../../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'page', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'sample',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: 'サンプルページ', // 基本必須（titleTagが優先される）
+  // titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: 'サンプルページ',
+  subTitle: 'Sample',
+  bgImage: 'sample',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: seo.title,
+    href: '',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <div class="py-[5rem]">
+    <Container size="base" className="">
+      {/* 見出し */}
+      <div class="relative border-0 border-t-[0.1rem] border-solid border-gray py-[8rem] [&>*]:mb-[3rem]">
+        <div class="absolute left-0 top-0 min-w-[14rem] bg-gray px-[2rem] py-[0.3rem] text-center">見出し</div>
+
+        <HeadingPrimary className="" sub="heading">見出し</HeadingPrimary>
+
+        <HeadingLine className="">下線付き見出し</HeadingLine>
+
+        <HeadingLine className="" size="lg">下線付き見出し（lg）</HeadingLine>
+      </div>
+
+      {/* ボタン */}
+      <div class="relative border-0 border-t-[0.1rem] border-solid border-gray py-[8rem] [&>*]:mb-[3rem]">
+        <div class="absolute left-0 top-0 min-w-[14rem] bg-gray px-[2rem] py-[0.3rem] text-center">ボタン</div>
+
+        <Btn href="/" className="mx-auto" icon={{ name: 'i-circle-arrow-right', width: 16, height: 16 }}>ボタン</Btn>
+
+        <Btn href="/" className="mx-auto" color="black" type="outline" icon={{ name: 'i-circle-arrow-right', width: 16, height: 16 }}>アウトライン</Btn>
+      </div>
+
+      {/* お知らせフィード */}
+      <div class="relative border-0 border-t-[0.1rem] border-solid border-gray py-[8rem] [&>*]:mb-[3rem]">
+        <div class="absolute left-0 top-0 min-w-[14rem] bg-gray px-[2rem] py-[0.3rem] text-center">お知らせフィード</div>
+
+        <Flex fit={false} className="[--gap-x:0rem] [--gap-y:0rem]" classNameWrap="border-solid border-t-[0.1rem] border-gray border-0">
+          {
+            [
+              {
+                href: '/news/single/',
+                className: '',
+                imgSrc: '/assets/images/noimage/noimage-120x90',
+                date: '2024.01.01',
+                dateTime: '2024-01-01',
+                tags: ['お知らせ'],
+                title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              },
+              {
+                href: '/news/single/',
+                className: '',
+                imgSrc: '/assets/images/noimage/noimage-120x90',
+                date: '2024.01.01',
+                dateTime: '2024-01-01',
+                tags: ['お知らせ', '重要なお知らせ', '長いカテゴリー名の場合長いカテゴリー名の場合', 'その他'],
+                title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              },
+            ].map((item) => {
+              return (
+                <article class="w-full">
+                  <FeedNews href={item.href} className={item.className} imgSrc={item.imgSrc} date={item.date} dateTime={item.dateTime} tags={item.tags} title={item.title} />
+                </article>
+              )
+            })
+          }
+        </Flex>
+      </div>
+
+      {/* アコーディオン */}
+      <div class="relative border-0 border-t-[0.1rem] border-solid border-gray py-[8rem] [&>*]:mb-[3rem]">
+        <div class="absolute left-0 top-0 min-w-[14rem] bg-gray px-[2rem] py-[0.3rem] text-center">アコーディオン</div>
+
+        <details class="c-details">
+          <summary class="c-details__summary">アコーディオン</summary>
+          <div class="c-details__content" data-details="content">
+            <p>コンテンツ</p>
+          </div>
+        </details>
+
+        <details class="c-details">
+          <summary class="c-details__summary">アコーディオン</summary>
+          <div class="c-details__content" data-details="content">
+            <p>コンテンツ</p>
+          </div>
+        </details>
+      </div>
+
+      {/* ダイアログ */}
+      <div class="relative border-0 border-t-[0.1rem] border-solid border-gray py-[8rem] [&>*]:mb-[3rem]">
+        <div class="absolute left-0 top-0 min-w-[14rem] bg-gray px-[2rem] py-[0.3rem] text-center">ダイアログ</div>
+
+        <div>
+          <button type="button" command="show-modal" commandfor="el-dialog" class="c-btn">
+            <span class="c-btn__label">ダイアログを開く</span>
+          </button>
+
+          <dialog id="el-dialog" closedby="any" aria-labelledby="dialog-heading" autofocus class="c-dialog" title="ダイアログのサンプル（title, id属性は都度変更）">
+            <div class="c-dialog__inner" data-dialog="dialog-container">
+              <button class="c-dialog__close" command="close" commandfor="el-dialog" aria-label="ダイアログを閉じる" type="button"></button>
+              <div class="c-dialog__container">
+                <h1 id="dialog-heading" class="c-dialog__heading">ダイアログのサンプル</h1>
+                <div class="px-[2rem] py-[4rem] text-center">〜〜コンテンツ〜〜</div>
+              </div>
+            </div>
+          </dialog>
+        </div>
+      </div>
+
+      {/* タブ切り替え */}
+      <div class="relative border-0 border-t-[0.1rem] border-solid border-gray py-[8rem] [&>*]:mb-[3rem]">
+        <div class="absolute left-0 top-0 min-w-[14rem] bg-gray px-[2rem] py-[0.3rem] text-center">タブ切り替え</div>
+
+        <div data-logic="tab-root" class="c-tab js-tab">
+          <span class="c-form-selectbox">
+            <select data-logic="tab-select" aria-label="タブメニュー" name="tabMenu">
+              <option value="#a">タブ A</option>
+              <option value="#b">タブ B</option>
+              <option value="#c">タブ C</option>
+              <option value="#d">タブ D</option>
+            </select>
+          </span>
+
+          <ul data-logic="tab-tablist" aria-label="タブ" class="c-tab__lists">
+            <li role="presentation" class="c-tab__list">
+              <button data-logic="tab" data-logic-href="#a" id="tab-a" type="button" class="is-active">タブ A</button>
+            </li>
+            <li role="presentation" class="c-tab__list">
+              <button data-logic="tab" data-logic-href="#b" id="tab-b" type="button">タブ B</button>
+            </li>
+            <li role="presentation" class="c-tab__list">
+              <button data-logic="tab" data-logic-href="#c" id="tab-c" type="button">タブ C</button>
+            </li>
+            <li role="presentation" class="c-tab__list">
+              <button data-logic="tab" data-logic-href="#d" id="tab-d" type="button">タブ D</button>
+            </li>
+          </ul>
+
+          <div data-logic="contents" class="c-tab__contents">
+            <div data-logic="tab-panel" id="a">
+              <div>
+                <p>
+                  吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。この時妙なものだと思った感じが今でも残っている。第一毛をもって装飾されべきはずの顔がつるつるしてまるで薬缶だ。その後猫にもだいぶ逢ったがこんな片輪には一度も出会わした事がない。のみならず顔の真中があまりに突起している。そうしてその穴の中から時々ぷうぷうと煙を
+                </p>
+              </div>
+            </div>
+            <div data-logic="tab-panel" id="b" class="hidden">タブパネル B</div>
+            <div data-logic="tab-panel" id="c" class="hidden">タブパネル C</div>
+            <div data-logic="tab-panel" id="d" class="hidden">タブパネル D</div>
+          </div>
+        </div>
+      </div>
+
+      {/* スライダー */}
+      <div class="relative border-0 border-t-[0.1rem] border-solid border-gray py-[8rem] [&>*]:mb-[3rem]">
+        <div class="absolute left-0 top-0 min-w-[14rem] bg-gray px-[2rem] py-[0.3rem] text-center">スライダー</div>
+
+        <div class="bg-gray-f5f5f5 py-[6rem] md:py-[8rem]">
+          <Container size="base" className="">
+            <div
+              id="slider-sample"
+              data-mount-timing="onmount"
+              data-autoplay="true"
+              data-splide='{"arrows":true,"pagination":true,"type":"slide","perPage":1,"gap":"1rem","padding":{"left":"3rem","right":"3rem"},"breakpoints":{"768":{"perPage":3,"padding":"0"},"1024":{"perPage":3,"gap":"3rem"}}}'
+              class="splide c-slider-sample"
+              aria-label="スライダーサンプル"
+              role="region"
+            >
+              <div class="splide__slider relative md:px-[4rem]">
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    {
+                      [
+                        {
+                          href: '/news/single/',
+                          blank: null,
+                        },
+                        {
+                          href: '/news/single/',
+                          blank: '_blank',
+                        },
+                        {
+                          href: '/news/single/',
+                          blank: null,
+                        },
+                        {
+                          href: '/news/single/',
+                          blank: null,
+                        },
+                      ].map((item, index) => {
+                        return (
+                          <li class="splide__slide">
+                            <a href={item.href} class="flex aspect-[370/160] h-auto w-full items-center justify-center bg-gray" target={item.blank}>
+                              <span>スライド {index}</span>
+                            </a>
+                          </li>
+                        )
+                      })
+                    }
+                  </ul>
+                </div>
+              </div>
+
+              <div class="c-splide-ui mt-[1.5rem] flex flex-wrap items-center justify-center">
+                <div class="splide__arrows c-splide-arrows" aria-busy="true">
+                  <button
+                    class="splide__arrow c-splide-arrow splide__arrow--prev c-splide-arrow--prev absolute left-0 top-1/2 -translate-y-[calc(50%+1.5rem)] translate-x-[1rem] md:translate-x-[2rem]"
+                    type="button"
+                  >
+                    <svg width="8" height="14" class="" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-angle-left`}></use></svg>
+                  </button>
+                  <button
+                    class="splide__arrow c-splide-arrow splide__arrow--next c-splide-arrow--next absolute right-0 top-1/2 -translate-x-[1rem] -translate-y-[calc(50%+1.5rem)] md:-translate-x-[2rem]"
+                    type="button"
+                  >
+                    <svg width="8" height="14" class="" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-angle-right`}></use></svg>
+                  </button>
+                </div>
+
+                <ul class="splide__pagination c-splide-pagination mx-auto pl-[2.4rem]" aria-busy="true"></ul>
+
+                <button class="splide__toggle c-splide-toggle" type="button">
+                  <span class="splide__toggle__play c-splide-toggle__label c-splide-toggle__label--play"
+                    ><svg width="8" height="9" class="c-splide-toggle__label-i" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-play`}></use></svg>
+                  </span>
+                  <span class="splide__toggle__pause c-splide-toggle__label c-splide-toggle__label--pause"
+                    ><svg width="8" height="8" class="c-splide-toggle__label-i" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-pause`}></use></svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </Container>
+        </div>
+      </div>
+
+      {/* 無限スクロール */}
+      <div class="relative border-0 border-t-[0.1rem] border-solid border-gray py-[8rem] [&>*]:mb-[3rem]">
+        <div class="absolute left-0 top-0 min-w-[14rem] bg-gray px-[2rem] py-[0.3rem] text-center">無限スクロール</div>
+
+        {/* 1つの場合 */}
+        <div class="js-autoSlide relative overflow-hidden" id="auto-slide-demo-1" data-as-duration="45000">
+          <div class="c-autoslide">
+            <ul class="c-autoslide__item" data-as="item">
+              {
+                [...Array(5)].map(() => (
+                  <li class="flex-none p-[1rem] md:p-[1.5rem]">
+                    <div class="aspect-[16/9] w-[30rem] bg-gray" />
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <button class="c-autoslide-control mt-[1rem] block" data-as="control" aria-controls="auto-slide-demo-1" type="button">
+            <svg width="16" height="16" class="c-autoslide-control__i c-autoslide-control__i--play h-[1.6rem]" aria-hidden="true">
+              <use href={`/assets/svg/sprite.svg#i-play`}></use>
+            </svg>
+            <svg width="16" height="16" class="c-autoslide-control__i c-autoslide-control__i--pause h-[1.6rem]" aria-hidden="true">
+              <use href={`/assets/svg/sprite.svg#i-pause`}></use>
+            </svg>
+          </button>
+        </div>
+
+        {/* 2つ以上を1つのボタンで操作する場合 */}
+        <div class="overflow-hidden" id="auto-slide-demo-2-wrapper">
+          <div class="js-autoSlide relative" id="auto-slide-demo-2" data-as-sync="auto-slide-demo-2-reverse" data-as-duration="45000">
+            <div class="c-autoslide">
+              <ul class="c-autoslide__item" data-as="item">
+                {
+                  [...Array(5)].map(() => (
+                    <li class="flex-none p-[1rem] md:p-[1.5rem]">
+                      <div class="aspect-[16/9] w-[30rem] bg-gray" />
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+          <div class="js-autoSlide relative" id="auto-slide-demo-2-reverse" data-as-direction="reverse" data-as-duration="45000">
+            <div class="c-autoslide">
+              <ul class="c-autoslide__item" data-as="item">
+                {
+                  [...Array(5)].map(() => (
+                    <li class="flex-none p-[1rem] md:p-[1.5rem]">
+                      <div class="aspect-[16/9] w-[30rem] bg-gray" />
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+
+            <button class="c-autoslide-control mt-[1rem] block" data-as="control" aria-controls="auto-slide-demo-2-wrapper" type="button">
+              <svg width="16" height="16" class="c-autoslide-control__i c-autoslide-control__i--play h-[1.6rem]" aria-hidden="true">
+                <use href={`/assets/svg/sprite.svg#i-play`}></use>
+              </svg>
+              <svg width="16" height="16" class="c-autoslide-control__i c-autoslide-control__i--pause h-[1.6rem]" aria-hidden="true">
+                <use href={`/assets/svg/sprite.svg#i-pause`}></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* 縦の場合 */}
+        <div class="overflow-hidden" id="auto-slide-demo-3-wrapper">
+          <div class="js-autoSlide relative flex items-end" id="auto-slide-demo-3" data-as-type="row" data-as-duration="45000">
+            <button class="c-autoslide-control mt-[1rem] block" data-as="control" aria-controls="auto-slide-demo-3-wrapper" type="button">
+              <svg width="16" height="16" class="c-autoslide-control__i c-autoslide-control__i--play h-[1.6rem]" aria-hidden="true">
+                <use href={`/assets/svg/sprite.svg#i-play`}></use>
+              </svg>
+              <svg width="16" height="16" class="c-autoslide-control__i c-autoslide-control__i--pause h-[1.6rem]" aria-hidden="true">
+                <use href={`/assets/svg/sprite.svg#i-pause`}></use>
+              </svg>
+            </button>
+            <div class="c-autoslide h-[30rem] flex-col">
+              <ul class="c-autoslide__item flex-col" data-as="item">
+                {
+                  [...Array(5)].map(() => (
+                    <li class="flex-none p-[1rem] md:p-[1.5rem]">
+                      <div class="aspect-[16/9] w-[30rem] bg-gray" />
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </div>
+</Layout>

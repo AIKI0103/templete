@@ -1,0 +1,24 @@
+---
+const { id, label, controls, className = '' } = Astro.props
+/**
+ * Astroコンポーネントのprops（親から渡された値）を分割代入で取得
+ * - id: ボタンのid属性用
+ * - label: ボタンのaria-label用（アクセシビリティ）
+ * - controls: 開閉対象の要素id（aria-controls用）
+ * - className: 追加クラス（任意）
+ *   → デフォルトは空文字（''）を設定しておく
+ */
+---
+
+<button id={id} class:list={['c-menu-toggle', className]} type="button" aria-label={label} aria-controls={controls} aria-expanded="false">
+  <span class="c-menu-toggle__u"></span>
+  <span data-close-label="閉じる" data-open-label="メニュー" class="c-menu-toggle__label">メニュー</span>
+</button>
+<!-- /**
+ * Astroコンポーネントのprops（親から渡された値）を分割代入で取得
+ * - id: ボタンのid属性用
+ * - label: ボタンのaria-label用（アクセシビリティ）
+ * - controls: 開閉対象の要素id（aria-controls用）
+ * - className: 追加クラス（任意）
+ *   → デフォルトは空文字（''）を設定しておく
+ */ -->

@@ -1,0 +1,81 @@
+/* slider
+```
+```
+*/
+
+/* 実績スライダー */
+.c-slider-works {
+  @apply relative mb-[5rem] md:mb-[8rem];
+
+  // .c-slider-works-main
+  &-main {
+    @apply static mb-[2rem] md:mb-[4.5rem];
+
+    // .c-slider-works-main__item
+    &__item {
+      @apply relative z-[1] aspect-[770/475] w-full bg-gray;
+
+      // .c-slider-works-main__item-img
+      &-img {
+        @apply absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-contain;
+      }
+
+      // 表示確認用
+      figcaption {
+        @apply absolute left-1/2 top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2;
+      }
+    }
+
+    .c-splide-arrow {
+      @apply absolute bottom-0 z-[1] -translate-y-[0.5rem] translate-x-0 max-md:hidden;
+
+      // .c-splide-arrow--prev
+      &--prev {
+        @apply left-0;
+      }
+
+      // .c-splide-arrow--next
+      &--next {
+        @apply right-0;
+      }
+    }
+  }
+
+  // .c-slider-works-thumbnail
+  &-thumbnail {
+    @apply md:px-[8rem];
+
+    // .c-slider-works-thumbnail__item
+    &__item {
+      @apply relative aspect-[105/65] w-full;
+
+      &::before {
+        @apply absolute left-0 top-0 z-[1] h-full w-full border-[0.2rem] border-solid border-text opacity-[var(--isActive,0)] content-[''] md:border-[0.3rem];
+        transition: opacity 0.4s var(--cb);
+      }
+
+      // .c-slider-works-thumbnail__item-img
+      &-img {
+        @apply absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover;
+      }
+
+      // 表示確認用
+      figcaption {
+        @apply absolute left-1/2 top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2;
+      }
+    }
+
+    .splide__slide {
+      &.is-active {
+        --isActive: 1;
+      }
+
+      @media (any-hover: hover) {
+        &:hover,
+        &:focus-visible {
+          --isActive: 1;
+        }
+      }
+    }
+  }
+}

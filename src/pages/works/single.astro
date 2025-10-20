@@ -1,0 +1,246 @@
+---
+import Btn from '../../components/Blocks/Btn.astro'
+import Container from '../../components/Blocks/Container.astro'
+import Flex from '../../components/Blocks/Flex.astro'
+import Image from '../../components/Blocks/Image.astro'
+import FeedWorks from '../../components/Feed/FeedWorks.astro'
+import WpSampleText from '../../components/Wp/WpSampleText.astro'
+import Layout from '../../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'single', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'works',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: '実績名 | 実績', // 基本必須（titleTagが優先される）
+  // titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: '実績',
+  subTitle: 'Works',
+  bgImage: 'works',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: '実績',
+    href: '../',
+  },
+  {
+    text: '実績名',
+    href: '',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <div class="py-[4rem] md:py-[7rem]">
+    <Container size="sm" className="max-w-full">
+      <article class="c-post-works">
+        <div class="c-post-works__wrap">
+          <header class="c-post-works__header">
+            <div class="c-post-works__area">熊本県</div>
+
+            <h1 class="c-post-works__title">ここにタイトルを表示する。省略せず全文表示（全角32〜40文字目安）</h1>
+
+            <ul class="c-post-works__tags">
+              <li><span class="c-post-works__tag">カテゴリA</span></li>
+              <li><span class="c-post-works__tag">カテゴリB</span></li>
+              <li><span class="c-post-works__tag">カテゴリC</span></li>
+            </ul>
+          </header>
+
+          <div class="c-slider-works">
+            <div
+              id="slider-works-main"
+              data-autoplay="false"
+              data-splide='{"arrows":true,"pagination":false,"type":"fade","perPage":1}'
+              data-sync="slider-works-thumbnail"
+              class="splide c-slider-works-main"
+              aria-label="実績のメインスライダー"
+              role="region"
+            >
+              <div class="splide__slider">
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    <li class="splide__slide">
+                      <figure class="c-slider-works-main__item">
+                        <Image ext="jpg" src={`/assets/images/sample/sample-290x475`} alt="" width={770} height={475} className="c-slider-works-main__item-img" lazyload={true} ariaHidden={false} />
+                        <figcaption>01</figcaption>
+                      </figure>
+                    </li>
+
+                    <li class="splide__slide">
+                      <figure class="c-slider-works-main__item">
+                        <Image ext="jpg" src={`/assets/images/sample/sample-770x475`} alt="" width={770} height={475} className="c-slider-works-main__item-img" lazyload={true} ariaHidden={false} />
+                        <figcaption>02</figcaption>
+                      </figure>
+                    </li>
+
+                    <li class="splide__slide">
+                      <figure class="c-slider-works-main__item">
+                        <Image ext="jpg" src={`/assets/images/sample/sample-290x475`} alt="" width={770} height={475} className="c-slider-works-main__item-img" lazyload={true} ariaHidden={false} />
+                        <figcaption>03</figcaption>
+                      </figure>
+                    </li>
+
+                    <li class="splide__slide">
+                      <figure class="c-slider-works-main__item">
+                        <Image ext="jpg" src={`/assets/images/sample/sample-770x475`} alt="" width={770} height={475} className="c-slider-works-main__item-img" lazyload={true} ariaHidden={false} />
+                        <figcaption>04</figcaption>
+                      </figure>
+                    </li>
+
+                    <li class="splide__slide">
+                      <figure class="c-slider-works-main__item">
+                        <Image ext="jpg" src={`/assets/images/sample/sample-290x475`} alt="" width={770} height={475} className="c-slider-works-main__item-img" lazyload={true} ariaHidden={false} />
+                        <figcaption>05</figcaption>
+                      </figure>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="c-splide-ui">
+                <div class="splide__arrows c-splide-arrows" aria-busy="true">
+                  <button class="splide__arrow splide__arrow--prev c-splide-arrow c-splide-arrow--prev" type="button">
+                    <svg width="8" height="14" class="" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-angle-left`}></use></svg>
+                  </button>
+                  <button class="splide__arrow splide__arrow--next c-splide-arrow c-splide-arrow--next" type="button">
+                    <svg width="8" height="14" class="" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-angle-right`}></use></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="slider-works-thumbnail"
+              data-autoplay="false"
+              data-splide='{"arrows":false,"pagination":false,"type":"slide","perPage":3.5,"gap":"1rem","breakpoints":{"768":{"perPage":5,"gap":"2rem"}}}'
+              class="splide c-slider-works-thumbnail"
+              aria-label="実績のサムネイルスライダー"
+              role="region"
+            >
+              <div class="splide__slider">
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    <li class="splide__slide">
+                      <figure class="c-slider-works-thumbnail__item">
+                        <Image ext="jpg" src={`/assets/images/sample/sample-105x65`} alt="" width={105} height={65} className="c-slider-works-thumbnail__item-img" lazyload={true} ariaHidden={false} />
+                        <figcaption>01</figcaption>
+                      </figure>
+                    </li>
+
+                    <li class="splide__slide">
+                      <figure class="c-slider-works-thumbnail__item">
+                        <Image ext="jpg" src={`/assets/images/sample/sample-105x65`} alt="" width={105} height={65} className="c-slider-works-thumbnail__item-img" lazyload={true} ariaHidden={false} />
+                        <figcaption>02</figcaption>
+                      </figure>
+                    </li>
+
+                    <li class="splide__slide">
+                      <figure class="c-slider-works-thumbnail__item">
+                        <Image ext="jpg" src={`/assets/images/sample/sample-105x65`} alt="" width={105} height={65} className="c-slider-works-thumbnail__item-img" lazyload={true} ariaHidden={false} />
+                        <figcaption>03</figcaption>
+                      </figure>
+                    </li>
+
+                    <li class="splide__slide">
+                      <figure class="c-slider-works-thumbnail__item">
+                        <Image ext="jpg" src={`/assets/images/sample/sample-105x65`} alt="" width={105} height={65} className="c-slider-works-thumbnail__item-img" lazyload={true} ariaHidden={false} />
+                        <figcaption>04</figcaption>
+                      </figure>
+                    </li>
+
+                    <li class="splide__slide">
+                      <figure class="c-slider-works-thumbnail__item">
+                        <Image ext="jpg" src={`/assets/images/sample/sample-105x65`} alt="" width={105} height={65} className="c-slider-works-thumbnail__item-img" lazyload={true} ariaHidden={false} />
+                        <figcaption>05</figcaption>
+                      </figure>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-editor">
+          {/* サンプルテキスト */}
+          <WpSampleText />
+        </div>
+      </article>
+    </Container>
+  </div>
+
+  <div class="bg-gray py-[4rem] md:pb-[6rem]">
+    <Container size="base" className="">
+      <h2 class="mb-[2.5rem] text-center text-[clamp(2rem,calc(28/768*100vw),2.8rem)] font-bold leading-[1.4] md:mb-[4rem]">同じカテゴリの実績</h2>
+
+      <Flex fit={false} className="[--gap-x:1.5rem] [--gap-y:1.5rem]" classNameWrap="">
+        {
+          [
+            {
+              className: '',
+              href: '/works/single/',
+              imgSrc: '/assets/images/noimage/noimage-270x165',
+              area: '熊本県',
+              title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              text: 'テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。',
+              tags: ['カテゴリーA'],
+            },
+            {
+              className: '',
+              href: '/works/single/',
+              imgSrc: '/assets/images/noimage/noimage-270x165',
+              area: '熊本県',
+              title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              text: 'テキストが入ります。',
+              tags: ['カテゴリーB', 'カテゴリーC'],
+            },
+            {
+              className: '',
+              href: '/works/single/',
+              imgSrc: '/assets/images/noimage/noimage-270x165',
+              area: '熊本県',
+              title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              text: 'テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。',
+              tags: ['カテゴリーA'],
+            },
+            {
+              className: '',
+              href: '/works/single/',
+              imgSrc: '/assets/images/noimage/noimage-270x165',
+              area: '熊本県',
+              title: 'タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。',
+              text: 'テキストが入ります。',
+              tags: ['カテゴリーB', 'カテゴリーC'],
+            },
+          ].map((item) => {
+            return (
+              <div class="w-full md:w-1/2 lg:w-1/4">
+                <FeedWorks className={item.className} href={item.href} imgSrc={item.imgSrc} area={item.area} title={item.title} text={item.text} tags={item.tags} />
+              </div>
+            )
+          })
+        }
+      </Flex>
+
+      <Btn href="/works/" className="mx-auto mt-[3rem] min-h-[5rem] w-[24rem] md:mt-[6rem]" color="black" icon={{ name: 'i-list', width: 16, height: 12 }}>一覧へ戻る</Btn>
+    </Container>
+  </div>
+</Layout>

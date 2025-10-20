@@ -1,0 +1,108 @@
+/* ナビゲーション関連
+```
+```
+*/
+
+/*
+// グローバルナビゲーション（共通スタイル）
+*/
+.c-nav-global {
+  @apply flex list-none pl-0;
+
+  // .c-nav-global__link
+  &__link {
+    @apply flex w-full items-center;
+  }
+}
+
+/*
+// グローバルナビゲーション（ヘッダーエリア）
+*/
+.c-header__nav {
+  @media (--min-lg) {
+    .c-nav-global {
+      // .c-nav-global__item
+      &__item {
+        @apply relative z-0;
+      }
+
+      // .c-nav-global__link
+      &__link {
+        @apply px-[2rem] py-[4rem];
+        transition: color 0.4s var(--cb);
+
+        @media (any-hover: hover) {
+          &:hover,
+          &:focus-visible {
+            @apply text-theme no-underline;
+          }
+        }
+
+        // .c-nav-global__link-label
+        &-label {
+          @apply text-[1.6rem] leading-[1.2];
+        }
+      }
+    }
+
+    .c-nav-dropdown {
+      @apply absolute left-1/2 top-full z-10 w-max -translate-x-1/2 translate-y-[var(--dropdown-y,-1.5rem)] pt-[3rem] opacity-[var(--dropdown-opacity,0)] transition-[opacity,visibility,transform] delay-[var(--dropdown-delay,0s)] duration-[var(--dropdown-duration,.25s)] ease-[var(--cb)] [visibility:var(--dropdown-visibility,hidden)];
+    }
+
+    .c-nav-global-child {
+      @apply relative z-[1] list-none bg-white px-[2rem] py-[2rem] shadow-[0px_5px_7px_0px_rgba(0,0,0,0.1)];
+
+      &::before {
+        @apply absolute left-1/2 top-[0.1rem] h-[2rem] w-[4rem] -translate-x-1/2 -translate-y-full bg-white content-[''] [clip-path:polygon(100%_100%,0_100%,50%_0)];
+      }
+
+      // .c-nav-global-child__link
+      &__link {
+        @apply flex items-center px-[1rem] py-[1rem] text-[var(--hover-color,theme('colors.text.DEFAULT'))];
+        transition: color 0.4s var(--cb);
+
+        // .c-nav-global-child__link-label
+        &-label {
+          @apply text-[1.6rem] font-medium leading-tight;
+        }
+
+        @media (any-hover: hover) {
+          &:hover,
+          &:focus-visible {
+            --hover-color: theme('colors.theme.DEFAULT');
+            @apply no-underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+// グローバルナビゲーション（ドロワーエリア）
+*/
+.c-drawer {
+  .c-nav-global {
+    @apply flex-col;
+
+    // .c-nav-global__link
+    &__link {
+      @apply px-[2rem] py-[2rem];
+    }
+  }
+}
+
+/*
+// ドロップダウンメニューの展開
+*/
+.c-nav-global {
+  .js-dropdown.is-show,
+  .js-clickdown.is-show {
+    --dropdown-y: 0;
+    --dropdown-opacity: 1;
+    --dropdown-visibility: visible;
+    --dropdown-duration: 0.4s;
+    --dropdown-delay: 0s;
+    --hover-parent-before-x: 0%;
+  }
+}

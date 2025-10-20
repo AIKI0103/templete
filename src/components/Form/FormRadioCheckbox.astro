@@ -1,0 +1,46 @@
+---
+import type { InputType } from './types.ts'
+
+// type以外を継承
+interface Props
+  extends Omit<InputType, 'value' | 'labelName' | 'id' | 'placeholder' | 'autocomplete' | 'inputmode' | 'isReadonly' | 'size' | 'maxlength' | 'minlength' | 'pattern' | 'className' | 'showValidTip'> {
+  type: 'checkbox' | 'radio'
+  lists: Array<{
+    label: string
+    value: string
+    checked: boolean
+  }>
+}
+
+const { type, name, lists } = Astro.props
+---
+
+{
+  name === 'acceptance' ? (
+    <span data-component="FormRadioCheckbox" class="wpcf7-form-control-wrap acceptance">
+      <span class="wpcf7-form-control wpcf7-acceptance optional">
+        {lists.map((item, index) => (
+          <span class="wpcf7-list-item">
+            <label>
+              <input type={type} name={name} value={item.value} aria-invalid="false" class="acceptance" id="acceptance" checked={(item.checked && 'checked') || undefined} />
+              <span class="wpcf7-list-item-label">{item.label}</span>
+            </label>
+          </span>
+        ))}
+      </span>
+    </span>
+  ) : (
+    <span data-component="FormRadioCheckbox" class="wpcf7-form-control-wrap">
+      <span class="wpcf7-form-control">
+        {lists.map((item, index) => (
+          <span class="wpcf7-list-item">
+            <label>
+              <input type={type} name={name} id={`${name}-${index}`} value={item.value} checked={(item.checked && 'checked') || undefined} />
+              <span class="wpcf7-list-item-label">{item.label}</span>
+            </label>
+          </span>
+        ))}
+      </span>
+    </span>
+  )
+}

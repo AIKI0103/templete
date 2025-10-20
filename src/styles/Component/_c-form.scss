@@ -1,0 +1,595 @@
+/* フォームパーツ
+```
+```
+*/
+
+/*! purgecss start ignore */
+input:not([type='radio'], [type='checkbox'], [type='range'], [type='submit'], [type='file'], [type='color'], [type='search'], [type='time'], [type='submit']),
+select,
+textarea {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  min-height: 6rem;
+  padding: 0.5rem 2rem;
+  vertical-align: middle;
+  background-color: theme('colors.form.inputBg');
+  border: 1px solid theme('colors.form.inputBorder');
+  border-radius: 0.5rem;
+  box-shadow: none !important;
+  outline: none !important;
+  transition:
+    border-color 0.35s ease-in-out 0s,
+    box-shadow 0.35s ease-in-out 0s;
+
+  &:not([size]) {
+    width: 100%;
+  }
+
+  /* 必須項目 */
+  &[required],
+  &[aria-required='true'] {
+    background-color: theme('colors.form.inputReqiredBg');
+  }
+
+  /* スマートフォンにて拡大されないためには 16px が必要 */
+  @at-root html.sp & {
+    font-size: 16px !important;
+  }
+}
+
+input,
+textarea {
+  /* プレースホルダー */
+  &::-webkit-input-placeholder,
+  &::-moz-placeholder,
+  &:-ms-input-placeholder,
+  &::-ms-input-placeholder {
+    color: theme('colors.form.placeholder');
+    font-weight: 500;
+  }
+  &::placeholder {
+    color: theme('colors.form.placeholder');
+    font-weight: 500;
+  }
+
+  /* 読み取り専用 */
+  &[readonly],
+  &[aria-readonly='true'] {
+    background: theme('colors.gray.f5f5f5') !important;
+  }
+}
+
+textarea {
+  padding: 1.5rem 2rem;
+}
+
+/* フォーカス（必須項目の視覚化） */
+input,
+textarea,
+select {
+  &:focus-visible {
+    box-shadow: 0 0 7px 1px rgba(0, 82, 184, 0.28) !important;
+  }
+}
+
+button:focus-visible {
+  outline: none;
+}
+/*! purgecss end ignore */
+
+/* Contact Form 7 デフォルトスタイルの上書き */
+.wpcf7-form-control-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.wpcf7-list-item {
+  display: inline-block;
+  margin: 0 0 0 1em;
+}
+
+.wpcf7-form-control {
+  display: block;
+  width: 100%;
+}
+
+.c-form-wrapper {
+  /* 必須項目未入力時の警告 */
+  .wpcf7-not-valid-tip {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0.4rem 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: theme('colors.white');
+    background: theme('colors.form.statusRequired');
+    border-radius: 0.5rem;
+
+    &::before {
+      content: '!';
+      display: flex;
+      flex: 0 0 auto;
+      justify-content: center;
+      align-items: center;
+      width: 1.6rem;
+      height: 1.6rem;
+      margin-right: 0.8rem;
+      padding: 0 0 0.1rem 0.1rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      text-align: center;
+      color: theme('colors.form.statusRequired');
+      background: theme('colors.white');
+      border-radius: 50%;
+    }
+  }
+
+  /* 送信エラーの警告 */
+  .c-form-response-output {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    .wpcf7-response-output {
+      display: flex;
+      justify-content: center;
+      max-width: 100%;
+      margin: 0;
+      padding: 1.2rem 2rem;
+      background: theme('colors.white');
+      border: 2px solid theme('colors.form.response');
+      border-radius: 0.8rem;
+    }
+  }
+
+  .wpcf7 form.invalid .wpcf7-response-output,
+  .wpcf7 form.unaccepted .wpcf7-response-output {
+    border-color: theme('colors.form.statusRequired');
+  }
+}
+
+.c-form-frame {
+  padding: 2rem;
+  background-color: theme('colors.white');
+
+  @media (--min-md) {
+    padding: 4.5rem 8rem 2rem;
+  }
+}
+
+.c-form-item {
+  padding: 1.5rem 0;
+
+  @media (--min-lg) {
+    padding: 3rem 0;
+  }
+}
+
+.c-form-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 0.5rem;
+
+  @media (--min-md) {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  // .c-form-header__label
+  &__label {
+    display: flex;
+    align-items: center;
+
+    // .c-form-header__label-main
+    &-main {
+      order: 1;
+      font-size: 1.6rem;
+      font-weight: 700;
+
+      @media (--min-lg) {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+/* 必須 / 任意 */
+.c-form-status {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 2.2rem;
+  margin-right: 1rem;
+  padding: 0.1rem 0 0 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+  background-color: theme('colors.form.statusAny');
+  border-radius: 0.4rem;
+
+  // .c-form-status--required
+  &--required {
+    color: theme('colors.white');
+    background-color: theme('colors.form.statusRequired');
+  }
+}
+
+.c-form-input {
+  width: 100%;
+  padding: 0;
+
+  @media (--min-lg) {
+    flex: 1 1 auto;
+    width: auto;
+    padding: 0;
+  }
+}
+
+/* 送信ボタン */
+.c-form-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // .c-form-submit__btn
+  &__btn {
+    position: relative;
+
+    input {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 57rem;
+      max-width: 100%;
+      height: 8rem;
+      margin: 0 auto;
+      font-size: 2rem;
+      font-weight: 700;
+      color: theme('colors.white');
+      background-color: theme('colors.form.submit');
+      border: none;
+      border-radius: 0;
+      transition:
+        background 0.4s ease-in-out,
+        color 0.4s ease-in-out;
+    }
+
+    // .c-form-submit__btn-i
+    &-i {
+      pointer-events: none;
+      position: absolute;
+      top: 50%;
+      right: 2rem;
+      color: theme('colors.white');
+      transform: translate3d(0, -50%, 0);
+      transition: color 0.4s ease-in-out;
+
+      @media (--min-lg) {
+        right: 12.5rem;
+      }
+    }
+
+    .ajax-loader,
+    .wpcf7-spinner {
+      position: absolute;
+      top: 50%;
+      left: 2rem;
+      transform: translate3d(0, -50%, 0);
+    }
+  }
+
+  &:not(.is-disabled) {
+    input {
+      html:not(.sp) &:hover,
+      html:not(.sp) &:focus-visible {
+        color: theme('colors.white');
+        background-color: theme('colors.form.submitHover');
+      }
+    }
+
+    .c-form-submit__btn {
+      html:not(.sp) &:hover,
+      html:not(.sp) &:focus-visible {
+        .c-form-submit__btn-i {
+          color: theme('colors.white');
+        }
+      }
+    }
+  }
+
+  &.is-disabled {
+    input {
+      cursor: not-allowed;
+      pointer-events: none;
+      color: theme('colors.form.disabled');
+      background-color: theme('colors.form.disabledBg');
+      border-color: theme('colors.form.disabled');
+    }
+
+    .c-form-submit__btn-i {
+      color: theme('colors.form.disabled');
+    }
+  }
+}
+
+/* セレクトボックス */
+.c-form-selectbox {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 100%;
+  background-color: theme('colors.form.inputBg');
+  border: 1px solid theme('colors.form.inputBorder');
+  border-radius: 0.5rem;
+
+  &::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 1.5rem;
+    width: 1rem;
+    height: 0.6rem;
+    background-color: theme('colors.text.DEFAULT');
+    transform: translateY(-50%);
+    clip-path: polygon(0 0, 100% 0%, 50% 100%);
+  }
+
+  select {
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 5rem;
+    padding-left: 1.5rem;
+    padding-right: 3.5rem;
+    font-size: inherit;
+    appearance: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: currentcolor;
+    background-color: transparent !important;
+    border: hidden;
+    border-radius: 0;
+    transition: border 0.4s ease-in-out;
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+}
+
+/* ラジオボタン / チェックボックス */
+.c-form-lists {
+  .wpcf7-form-control {
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1;
+  }
+
+  .wpcf7-list-item {
+    flex: 1 1 auto;
+    width: auto;
+    margin: 0 0.8rem 0.8rem 0;
+
+    @media (--min-md) {
+      flex: 0 1 auto;
+      margin: 0 2rem 0.8rem 0;
+    }
+  }
+
+  label {
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    padding: 0.9rem 1.6rem;
+    line-height: 1.3;
+    background-color: theme('colors.form.inputBg');
+
+    @media (--min-md) {
+      min-height: 5rem;
+    }
+  }
+
+  input {
+    & + span {
+      position: static;
+      display: block;
+      padding-bottom: 0.2rem;
+      padding: 0 0.8rem 0.2rem 0.5rem;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5rem;
+        transition:
+          border 0.4s ease-in-out,
+          background 0.4s ease-in-out;
+        border: 1px solid theme('colors.form.inputBorder');
+      }
+    }
+
+    &:focus-visible {
+      & + span {
+        &::before {
+          border-color: theme('colors.form.listsActive');
+        }
+      }
+    }
+  }
+
+  [type='radio'],
+  [type='checkbox'] {
+    appearance: none;
+    cursor: pointer;
+    flex: 0 0 auto;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid theme('colors.form.inputBorder');
+    background-color: theme('colors.form.listsBg');
+    outline: none;
+    background-repeat: no-repeat;
+  }
+
+  [type='radio'] {
+    box-shadow: inset 0 0 0 0.5rem theme('colors.form.listsBg');
+    border-radius: 49.9%;
+
+    &:checked {
+      background-color: theme('colors.form.listsActive');
+      border-color: theme('colors.form.listsActive');
+    }
+  }
+
+  [type='checkbox'] {
+    background-size: 1rem;
+    border-radius: 2px;
+    background-position: center;
+
+    &:checked {
+      background: theme('colors.form.listsBg')
+        url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2016%2011.94%22%20width%3D%2216%22%20height%3D%2212%22%20fill%3D%22%23168eff%22%3E%3Cpath%20id%3D%22check%22%20d%3D%22M.22%2C6.5A.75.75%2C0%2C0%2C1%2C0%2C5.94a.73.73%2C0%2C0%2C1%2C.22-.56L1.38%2C4.25A.66.66%2C0%2C0%2C1%2C1.92%2C4a.79.79%2C0%2C0%2C1%2C.58.25L6%2C7.75%2C13.5.25A.79.79%2C0%2C0%2C1%2C14.08%2C0a.66.66%2C0%2C0%2C1%2C.54.25l1.16%2C1.13a.73.73%2C0%2C0%2C1%2C.22.56.75.75%2C0%2C0%2C1-.22.56L6.56%2C11.69a.75.75%2C0%2C0%2C1-1.12%2C0Z%22%2F%3E%3C%2Fsvg%3E')
+        no-repeat center center/1.3rem;
+    }
+  }
+
+  /* 個人情報の同意 */
+  &.c-form-acceptance {
+    .wpcf7-list-item {
+      margin: 0;
+    }
+
+    label {
+      width: 32rem;
+      max-width: 100%;
+      padding: 2rem 1.5rem;
+      font-size: 1.6rem;
+      font-weight: 400;
+      background: theme('colors.form.inputReqiredBg');
+
+      @media (--min-md) {
+        padding: 2rem 3.5rem;
+      }
+    }
+
+    [type='checkbox'] {
+      background-color: theme('colors.white');
+    }
+
+    [type='checkbox']:checked {
+      background-color: theme('colors.white');
+    }
+  }
+}
+
+/* 住所 */
+.c-form-block-address {
+  // .c-form-block-address__postalcode
+  &__postalcode {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    // .c-form-block-address__postalcode-sub
+    &-sub {
+      flex: 0 0 auto;
+      margin-right: 1rem;
+    }
+
+    // .c-form-block-address__postalcode-label
+    &-label {
+      margin-right: 2rem;
+
+      @media (--min-md) {
+        flex: 0 1 auto;
+      }
+    }
+
+    // .c-form-block-address__postalcode-text
+    &-text {
+      padding: 0.5rem 0;
+      font-size: 1.4rem;
+
+      @media (--min-md) {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  // .c-form-block-address__item
+  &__item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+
+    @media (--min-md) {
+      flex-wrap: nowrap;
+      margin-top: 2rem;
+    }
+
+    // .c-form-block-address__item-sub
+    &-sub {
+      flex: 0 0 auto;
+      width: 100%;
+      margin-bottom: 0.5rem;
+
+      @media (--min-md) {
+        width: 12rem;
+        margin-bottom: 0;
+      }
+    }
+
+    // .c-form-block-address__item-label
+    &-label {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+/* メールアドレス入力チェック */
+.c-form-block-emailcheck {
+  @media (--min-md) {
+    padding-left: 2.5rem;
+  }
+
+  // .c-form-block-emailcheck__input
+  &__input {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.5;
+
+    @media (--min-md) {
+      font-size: 2.4rem;
+    }
+  }
+
+  // .c-form-block-emailcheck__help
+  &__help {
+    padding-left: 1em;
+    text-indent: -1em;
+    font-size: 1.4rem;
+
+    @media (--min-md) {
+      font-size: 1.5rem;
+    }
+  }
+}

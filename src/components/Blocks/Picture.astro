@@ -1,0 +1,47 @@
+---
+const { src, srcSp, ext = 'jpg', alt, media, className = '', width, height, mobileWidth, mobileHeight, lazyload, webp = true, ariaHidden = false } = Astro.props
+
+/*
+<Picture
+  ext="jpg"
+  src={`${root}assets/images/example`}
+  webp={true}
+  lazyload={true}
+  alt="サンプルの写真"
+  width={670}
+  height={450}
+  className=""
+  media=""
+  mobileWidth=""
+  mobileHeight=""
+  ariaHidden={false}
+/>
+*/
+---
+
+<picture>
+  {
+    webp && (
+      <source
+        type="image/webp"
+        media={`(min-width:${media || width / 2}px)`}
+        srcset={`${src}.webp 1x, ${src}@2x.webp 2x`}
+        width={(media && width) || undefined}
+        height={(media && height) || undefined}
+      />
+    )
+  }
+  <source media={`(min-width:${media || width / 2}px)`} srcset={`${src}.${ext} 1x, ${src}@2x.${ext} 2x`} width={(media && width) || undefined} height={(media && height) || undefined} />
+  {webp && <source type="image/webp" srcset={`${srcSp || src}.webp 1x, ${srcSp || src}@2x.webp 2x`} width={(media && mobileWidth) || undefined} height={(media && mobileHeight) || undefined} />}
+  <img
+    src={`${srcSp || src}.${ext}`}
+    srcset={`${srcSp || src}@2x.${ext}`}
+    class={className || undefined}
+    decoding="async"
+    loading={lazyload ? 'lazy' : undefined}
+    width={`${(media && mobileWidth) || width}`}
+    height={`${(media && mobileHeight) || height}`}
+    alt={alt}
+    aria-hidden={ariaHidden || undefined}
+  />
+</picture>

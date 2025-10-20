@@ -1,0 +1,21 @@
+---
+import { Breadcrumbs } from 'astro-breadcrumbs'
+const { breadcrumbs } = Astro.props
+/*
+breadcrumbs = [
+  {href: '/', label: 'ホーム'},
+  {href: '/children/', label: '子ページA'},
+  {href: '/children/children-b/', label: '子ページB', current: true},
+]
+*/
+
+const customCrumbs = [
+  {
+    text: 'ホーム',
+    href: '/',
+  },
+  ...breadcrumbs,
+]
+---
+
+<Breadcrumbs mainBemClass="c-breadcrumbs" crumbs={customCrumbs} />

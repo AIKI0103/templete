@@ -1,0 +1,37 @@
+---
+import Image from '../Blocks/Image.astro'
+
+interface Props {
+  href: string
+  id?: string
+  className?: string
+  imgSrc: string
+  area: string
+  title: string
+  text: string
+  tags: string[]
+}
+
+const { href, id, className, imgSrc, area, title, text, tags } = Astro.props
+---
+
+<a href={href} id={id && id} class={`c-feed-works ${className}`}>
+  <figure class="c-feed-works__thumb">
+    <Image ext="jpg" src={imgSrc} alt="" width={270} height={165} className="c-feed-works__thumb-img" lazyload={true} ariaHidden={false} />
+  </figure>
+
+  <div class="c-feed-works__body">
+    <div class="c-feed-works__area">{area}</div>
+    <h3 class="c-feed-works__title">{title}</h3>
+    <p class="c-feed-works__text">{text}</p>
+    <ul class="c-feed-works__tags">
+      {
+        tags.map((tag) => (
+          <li>
+            <span class="c-feed-works__tag">{tag}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</a>

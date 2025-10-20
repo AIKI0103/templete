@@ -1,0 +1,42 @@
+/* コンテナ
+```
+<div class="c-container c-container--sm"></div>
+
+<Container element="section" size="sm">
+  コンテナコンポーネント
+</Container>
+```
+*/
+.c-container {
+  @apply mx-auto w-container max-w-[calc(100%-4rem)];
+
+  // .c-container--xs
+  &--xs {
+    @apply w-xsmall;
+  }
+
+  // .c-container--sm
+  &--sm {
+    @apply w-small;
+  }
+
+  // .c-container--md
+  &--md {
+    @apply w-medium;
+  }
+
+  // .c-container--lg
+  &--lg {
+    @apply w-large;
+  }
+
+  // .c-container--design
+  &--design {
+    @apply w-design;
+  }
+
+  // .c-container--full
+  &--full {
+    @apply w-full max-w-full;
+  }
+}

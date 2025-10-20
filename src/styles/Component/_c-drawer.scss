@@ -1,0 +1,68 @@
+/* ドロワー
+```
+```
+*/
+.c-drawer {
+  --cb: cubic-bezier(0.46, 0.38, 0.37, 1.04);
+  @apply invisible fixed left-0 top-0 z-[-1000] h-full min-h-screen w-full text-white;
+
+  &::before {
+    @apply absolute right-0 top-0 block h-full bg-theme content-[''];
+  }
+
+  // .c-drawer__scrollarea
+  &__scrollarea {
+    @apply relative z-[5] h-full overflow-y-auto overflow-x-hidden;
+  }
+
+  // .c-drawer__container
+  &__container {
+    @apply translate-x-[2rem] pt-[6rem];
+    @apply after:block after:h-[10rem] after:w-full after:content-['']; // safari等の検索バー対策
+  }
+
+  /* open */
+  &[aria-hidden='false'] {
+    @apply visible z-drawer;
+    transition:
+      visibility 0.1s var(--cb),
+      opacity 0.1s var(--cb),
+      z-index 0.1s var(--cb);
+
+    &::before {
+      @apply w-full opacity-100;
+      transition:
+        width 0.25s var(--cb) 0.1s,
+        opacity 0.25s var(--cb) 0.1s;
+    }
+
+    .c-drawer__container {
+      @apply translate-x-0 translate-y-0 opacity-100;
+      transition:
+        opacity 0.4s var(--cb) 0.4s,
+        transform 0.4s var(--cb) 0.4s;
+    }
+  }
+
+  /* close */
+  &[aria-hidden='true'] {
+    @apply invisible;
+    transition:
+      visibility 0.4s var(--cb) 0.55s,
+      z-index 0.4s var(--cb) 0.55s;
+
+    &::before {
+      @apply w-0 opacity-0;
+      transition:
+        width 0.25s var(--cb) 0.2s,
+        opacity 0.25s var(--cb) 0.4s;
+    }
+
+    .c-drawer__container {
+      @apply translate-x-[2rem] translate-y-0 opacity-0;
+      transition:
+        opacity 0.4s var(--cb) 0s,
+        transform 0.4s var(--cb) 0s;
+    }
+  }
+}

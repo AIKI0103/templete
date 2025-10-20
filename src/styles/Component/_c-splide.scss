@@ -1,0 +1,86 @@
+/* Splide
+```
+```
+*/
+
+/* 共通スタイル */
+.splide {
+  &:not(.is-overflow) {
+    .splide__toggle,
+    .c-splide-ui {
+      display: none;
+    }
+  }
+
+  // .splide__slide
+  &__slide {
+    @apply flex;
+  }
+
+  &.--inline-visible {
+    .splide__track {
+      overflow: visible;
+    }
+  }
+}
+
+/* 再生停止ボタン */
+.c-splide-toggle {
+  @apply relative z-0 flex h-[2.4rem] w-[2.4rem] cursor-pointer items-center justify-center rounded-[50vh] bg-white;
+
+  // .c-splide-toggle__label
+  &__label {
+    // .c-splide-toggle__label-i
+    &-i {
+      @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+    }
+
+    // .c-splide-toggle__label--play
+    &--play {
+      .c-splide-toggle__label-i {
+        @apply ml-[0.1rem];
+      }
+    }
+  }
+}
+
+/* ページネーション */
+.c-splide-pagination {
+  @apply flex list-none pl-0 leading-none;
+
+  li {
+    @apply block;
+  }
+
+  li + li {
+    @apply pl-[.7rem];
+  }
+
+  // .c-splide-pagination__page
+  &__page {
+    @apply block h-[1rem] w-[1rem] rounded-[50vh] border border-none bg-white;
+
+    &[aria-selected='true'] {
+      @apply bg-theme;
+    }
+  }
+}
+
+/* 前後矢印 */
+.c-splide-arrows {
+  @apply flex w-full items-center justify-between;
+}
+
+.c-splide-arrow {
+  @apply flex h-[3.5rem] w-[3.5rem] items-center justify-center rounded-[50vh] border-none bg-text text-white md:h-[5.5rem] md:w-[5.5rem];
+  transition:
+    color 0.4s var(--cb),
+    background-color 0.4s var(--cb);
+
+  @media (any-hover: hover) {
+    &:hover,
+    &:focus-visible {
+      @apply bg-theme text-white;
+    }
+  }
+}

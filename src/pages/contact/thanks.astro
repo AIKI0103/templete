@@ -1,0 +1,72 @@
+---
+import Btn from '../../components/Blocks/Btn.astro'
+import Layout from '../../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'page', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'thanks',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: '送信完了 | お問い合わせ', // 基本必須（titleTagが優先される）
+  // titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: '送信完了',
+  subTitle: 'Contact',
+  bgImage: 'contact',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: 'お問い合わせ',
+    href: '../',
+  },
+  {
+    text: '送信完了',
+    href: '',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <div class="c-page-thanks">
+    <div class="c-page-thanks__main">
+      <h2 class="c-page-thanks__heading">お問い合わせ<span class="inline-block">ありがとうございました！</span></h2>
+
+      <div class="c-page-thanks__textarea">
+        <p>
+          このたびはお問い合わせいただきありがとうございます。<br />
+          ご入力いただいたメールアドレス宛に受付完了メールをお送りしましたのでご確認ください。
+        </p>
+        <p>万一、 完了メールが届いていない場合、以下の原因の可能性がございますので再度ご確認をお願いいたします。</p>
+
+        <ul class="c-page-thanks__list">
+          <li>メールアドレスが誤っている</li>
+          <li>迷惑メールフォルダ等に振り分けられている</li>
+          <li>送信トラブル</li>
+        </ul>
+
+        <p>完了メールが届いていない場合、送信トラブル等の可能性もありますので、大変お手数ではございますが、改めてフォームよりお問い合わせいただくか、お電話にてお問い合わせをお願いいたします。</p>
+        <p>今後ともご愛顧賜りますようよろしくお願い申し上げます。</p>
+      </div>
+
+      <p>
+        <Btn href="/" className="mx-auto" icon={{ name: 'i-circle-arrow-right', width: 16, height: 16 }}>トップページに戻る</Btn>
+      </p>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,74 @@
+/* ヘッダー
+```
+```
+*/
+.c-header {
+  @apply fixed left-0 top-0 z-header w-full lg:relative;
+
+  // .c-header__main
+  &__main {
+    @apply flex h-[6rem] items-center bg-white lg:min-h-[10rem];
+  }
+
+  // .c-header__logo
+  &__logo {
+    @apply mr-auto flex flex-none items-center justify-center py-0 pl-[1.5rem] pr-[1rem] md:px-[2rem] lg:pr-[2rem];
+
+    // .c-header__logo-label
+    &-label {
+      @apply w-[13.5rem] lg:w-max;
+    }
+
+    .c-logo {
+      // .c-logo__label
+      &__label {
+        @apply max-lg:hidden;
+      }
+    }
+  }
+
+  // .c-header__nav
+  &__nav {
+    @apply flex items-end max-lg:hidden;
+  }
+}
+
+/* 追従ヘッダー（デフォルトのヘッダーとレイアウトを変えたい場合などで使用、不要な場合は削除） */
+@media (--max-lg) {
+  .js-fixedheader {
+    @apply hidden;
+  }
+}
+
+@media (--min-lg) {
+  .js-fixedheader {
+    @apply invisible fixed left-0 top-0 z-header w-full -translate-y-full opacity-0;
+    transition:
+      opacity 0.4s var(--cb),
+      transform 0.4s var(--cb),
+      visibility 0.4s var(--cb);
+
+    .c-header__logo {
+      .c-logo {
+        // .c-logo__label
+        &__label {
+          @apply hidden;
+        }
+      }
+    }
+
+    .c-header__nav {
+      .c-nav-global {
+        // .c-nav-global__link
+        &__link {
+          @apply py-[3rem];
+        }
+      }
+    }
+
+    /* 表示アニメーション */
+    .js-over-header & {
+      @apply visible translate-y-0 opacity-100 shadow-[0_.3rem_.5rem_rgba(0,0,0,0.05)];
+    }
+  }
+}

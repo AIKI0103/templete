@@ -1,0 +1,105 @@
+---
+import Container from '../../components/Blocks/Container.astro'
+import HeadingBgc from '../../components/Blocks/HeadingBgc.astro'
+import FeedRecruit from '../../components/Feed/FeedRecruit.astro'
+import Layout from '../../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'page', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'recruit',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: '求人情報', // 基本必須（titleTagが優先される）
+  // titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: '求人情報',
+  subTitle: 'Recruit',
+  bgImage: 'recruit',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: seo.title,
+    href: '',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <div class="py-[3rem] md:py-[7rem]">
+    <Container size="md" className="">
+      <section class="py-[1.5rem] md:py-[2.5rem]">
+        <HeadingBgc className="mb-[2rem] md:mb-[4rem]">熊本県</HeadingBgc>
+
+        {
+          [
+            {
+              href: '/recruit/single/',
+              className: '',
+              imgSrc: '/assets/images/noimage/noimage-240x150',
+              title: '営業職',
+              text: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              href: '/recruit/single/',
+              className: '',
+              imgSrc: '/assets/images/noimage/noimage-240x150',
+              title: '職種名が入ります',
+              text: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+          ].map((item) => {
+            return (
+              <div class="mb-[2rem] md:mb-[4rem]">
+                <FeedRecruit href={item.href} className={item.className} imgSrc={item.imgSrc} title={item.title} text={item.text} />
+              </div>
+            )
+          })
+        }
+      </section>
+
+      <section class="py-[1.5rem] md:py-[2.5rem]">
+        <HeadingBgc className="mb-[2rem] md:mb-[4rem]">東京都</HeadingBgc>
+
+        {
+          [
+            {
+              className: '',
+              href: '/recruit/single/',
+              imgSrc: '/assets/images/noimage/noimage-240x150',
+              title: '営業職',
+              text: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              className: '',
+              href: '/recruit/single/',
+              imgSrc: '/assets/images/noimage/noimage-240x150',
+              title: '職種名が入ります職種名が入ります職種名が入ります職種名が入ります職種名が入ります職種名が入ります',
+              text: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+          ].map((item) => {
+            return (
+              <div class="mb-[2rem] md:mb-[4rem]">
+                <FeedRecruit className={item.className} href={item.href} imgSrc={item.imgSrc} title={item.title} text={item.text} />
+              </div>
+            )
+          })
+        }
+      </section>
+    </Container>
+  </div>
+</Layout>

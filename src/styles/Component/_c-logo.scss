@@ -1,0 +1,27 @@
+/* ロゴ
+```
+```
+*/
+.c-logo {
+  // .c-logo__link
+  &__link {
+    @apply flex flex-col items-center justify-center;
+    transition: opacity 0.4s var(--cb);
+
+    @media (any-hover: hover) {
+      &:hover,
+      &:focus-visible {
+        @apply opacity-70;
+      }
+    }
+  }
+
+  // .c-logo__symbol
+  &__symbol {
+  }
+
+  // .c-logo__label
+  &__label {
+    @apply mt-[0.4rem] bg-black px-[0.8rem] py-[0.2rem] text-[clamp(1rem,calc(14/768*100vw),1.4rem)] leading-[1.2] text-white;
+  }
+}

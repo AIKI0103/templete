@@ -1,0 +1,68 @@
+/* ハンバーガーメニュー
+```
+```
+*/
+.c-menu-toggle {
+  @apply fixed right-0 top-0 z-trigger flex h-[6rem] w-[6rem] flex-col items-center justify-center bg-black text-white;
+
+  @media (any-hover: hover) {
+    &:hover,
+    &:focus-visible {
+      @apply bg-theme;
+    }
+  }
+
+  // .c-menu-toggle__label
+  &__label {
+    @apply mx-auto my-[0.4rem] text-[1.1rem] leading-[1];
+  }
+
+  // .c-menu-toggle__u
+  &__u {
+    @apply relative mx-auto my-[1rem] block h-[0.2rem] w-[2rem] bg-current transition-[background-color] duration-[0.4s] ease-[var(--cb)];
+
+    &::before,
+    &::after {
+      @apply absolute left-0 block h-full w-full origin-center bg-current content-[''];
+    }
+
+    &::before {
+      @apply bottom-[0.8rem];
+      transition:
+        bottom 0.4s var(--cb) 0.2s,
+        right 0.4s var(--cb) 0.2s,
+        transform 0.4s var(--cb);
+    }
+
+    &::after {
+      @apply left-0 top-[0.8rem];
+      transition:
+        top 0.4s var(--cb) 0.2s,
+        right 0.4s var(--cb) 0.2s,
+        transform 0.4s var(--cb);
+    }
+  }
+
+  /* open */
+  &[aria-expanded='true'] {
+    .c-menu-toggle__u {
+      @apply bg-transparent;
+
+      &::before {
+        @apply bottom-0 translate-x-0 translate-y-0 rotate-[45deg];
+        transition:
+          bottom 0.4s var(--cb),
+          right 0.4s var(--cb),
+          transform 0.4s var(--cb) 0.2s;
+      }
+
+      &::after {
+        @apply top-0 translate-x-0 translate-y-0 rotate-[-45deg];
+        transition:
+          top 0.4s var(--cb),
+          left 0.4s var(--cb),
+          transform 0.4s var(--cb) 0.2s;
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+/* 共通レイアウトの定義
+```
+```
+*/
+.l-body {
+  @apply grid min-h-screen grid-cols-1 grid-rows-[auto,1fr,auto];
+
+  // grid-areas-[header,main,footer]
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+
+  @media (--min-lg) {
+    --layout-sub-width: 27rem;
+  }
+
+  // .l-body__header
+  &__header {
+    @apply relative w-full pt-[6rem];
+    @apply lg:pt-0;
+
+    // grid-area-[header]
+    grid-area: header;
+  }
+
+  // .l-body__main
+  &__main {
+    @apply flex flex-col;
+
+    // grid-area-[main]
+    grid-area: main;
+  }
+
+  // .l-body__wrapper
+  &__wrapper {
+    @apply flex flex-auto justify-center [flex-wrap:var(--layout-wrap)];
+
+    // .l-body__wrapper--sub
+    &--sub {
+      --container: 117rem;
+      --container-space: 5rem;
+      @apply w-full max-w-full;
+      @apply lg:mx-auto lg:max-w-[calc(100%-4rem)] lg:pt-[7.5rem] lg:[--layout-main-width:calc(var(--container)-var(--layout-sub-width))] lg:[--layout-wrap:nowrap];
+    }
+  }
+
+  // .l-body__container
+  &__container {
+    @apply w-[var(--layout-main-width)] max-w-full;
+    @apply lg:pr-[var(--container-space,0)];
+  }
+
+  // .l-body__sub
+  &__sub {
+    @apply w-[var(--layout-sub-width)] max-w-full;
+  }
+
+  // .l-body__footer
+  &__footer {
+    // grid-area-[footer]
+    grid-area: footer;
+  }
+}

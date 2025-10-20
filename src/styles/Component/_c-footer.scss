@@ -1,0 +1,12 @@
+/* フッター
+```
+```
+*/
+.c-footer {
+  @apply py-[6rem];
+
+  // .c-footer-copyright
+  &-copyright {
+    @apply block w-full text-center;
+  }
+}

@@ -1,0 +1,73 @@
+/* サイドバー
+```
+```
+*/
+.c-sidebar {
+  @apply mb-[2.5rem] md:mb-[5rem];
+
+  // .c-sidebar__header
+  &__header {
+    @apply flex items-center justify-center rounded-[1.2rem_1.2rem_0_0] px-[1rem] py-[1rem];
+    @apply min-h-[5rem] bg-text text-[clamp(1.6rem,calc(18/768*100vw),1.8rem)] font-bold text-white;
+
+    // .c-sidebar__header-label
+    &-label {
+      @apply text-[1em];
+    }
+  }
+}
+
+// ナビゲーション
+.c-sidebar-nav {
+  @apply list-none pl-0 text-[clamp(1.4rem,calc(16/768*100vw),1.6rem)] leading-[1.2];
+
+  li {
+    @apply relative;
+  }
+
+  a {
+    --space-l: 2rem;
+    --space-r: 4rem;
+    --space-t: 1.5rem;
+    --space-b: 1.5rem;
+    @apply relative block p-[var(--space-t)_var(--space-r)_var(--space-b)_var(--space-l)] text-[1em] no-underline;
+    transition: background-color 0.4s var(--cb);
+
+    @media (any-hover: hover) {
+      &:hover,
+      &:focus-visible {
+        @apply bg-gray-f5f5f5 no-underline;
+      }
+    }
+  }
+
+  svg {
+    @apply absolute right-0 top-1/2 -translate-x-[2rem] -translate-y-1/2;
+  }
+
+  ul,
+  ol {
+    @apply list-none overflow-hidden pb-[.5rem] pl-[1.5em];
+
+    a {
+      --space-l: 1.35em;
+      --space-r: 1rem;
+      --space-t: 0.9rem;
+      --space-b: 1rem;
+      @apply text-[calc(14/16*1em)];
+
+      &::before {
+        @apply absolute -top-1/2 left-0 h-full w-[.75em] border-b border-l border-r-0 border-t-0 border-solid content-[''];
+      }
+    }
+  }
+
+  // 第１階層
+  > li {
+    @apply border-0 border-b-[0.1rem] border-solid border-gray;
+
+    > a {
+      @apply pr-[4rem];
+    }
+  }
+}

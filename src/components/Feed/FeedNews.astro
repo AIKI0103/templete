@@ -1,0 +1,43 @@
+---
+import Image from '../Blocks/Image.astro'
+
+interface Props {
+  href: string
+  id?: string
+  className?: string
+  imgSrc: string
+  date: string
+  dateTime: string
+  tags: string[]
+  title: string
+}
+
+const { href, id, className, imgSrc, date, dateTime, tags, title } = Astro.props
+---
+
+<a href={href} id={id && id} class:list={['c-feed-news', className]}>
+  <figure class="c-feed-news__thumb">
+    <Image ext="jpg" src={imgSrc} alt="" width={120} height={90} className="c-feed-news__thumb-img" lazyload={true} ariaHidden={false} />
+  </figure>
+
+  <div class="c-feed-news__body">
+    <time class="c-feed-news__date" datetime={`${dateTime}`}>
+      <svg width="16" height="15" class="mr-[0.8rem]" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-calendar`}></use></svg>
+      {date}
+    </time>
+
+    <ul class="c-feed-news__tags">
+      {
+        tags.map((tag) => (
+          <li>
+            <span class="c-feed-news__tag">{tag}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h3 class="c-feed-news__title">{title}</h3>
+  </div>
+
+  <svg width="16" height="16" class="c-feed-news__arrow" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-circle-arrow-right`}></use></svg>
+</a>

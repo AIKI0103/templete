@@ -1,0 +1,128 @@
+---
+import Btn from '../../components/Blocks/Btn.astro'
+import Container from '../../components/Blocks/Container.astro'
+import HeadingLine from '../../components/Blocks/HeadingLine.astro'
+import Layout from '../../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'single', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'recruit',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: '営業職 | 求人情報', // 基本必須（titleTagが優先される）
+  // titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: '求人情報',
+  subTitle: 'Recruit',
+  bgImage: 'recruit',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: '求人情報',
+    href: '../',
+  },
+  {
+    text: '営業職',
+    href: '',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <div class="py-[3rem] md:py-[7rem]">
+    <Container size="md" className="">
+      <HeadingLine className="mb-[2rem] md:mb-[4rem]" tag="h1" size="lg">営業職</HeadingLine>
+
+      <p class="mb-[1.5rem] text-right">
+        <span class="ml-[3em] inline-block">■最終更新日時：<time datetime="2024-04-01">2024.04.01</time></span><span class="ml-[3em] inline-block"
+          >■募集締め切り日時：<time datetime="2024-12-31">2024.12.31</time>
+        </span>
+      </p>
+
+      <div class="c-table c-table--row mb-[4rem] md:mb-[8rem]">
+        <table title="営業職の募集要項" class="w-full">
+          <tbody class="md:[&_td]:py-[2rem] [&_th]:w-[17rem] [&_th]:text-center">
+            <tr>
+              <th scope="row">仕事内容</th>
+              <td>コミュニケーションを通しての健康管理をお願いします。<br />バイタルチェック、入浴後の処置（軟膏、ガーゼ交換）健康相談、健康管理、服薬管理、介護業務</td>
+            </tr>
+
+            <tr>
+              <th scope="row">雇用形態</th>
+              <td>フルタイム</td>
+            </tr>
+
+            <tr>
+              <th scope="row">勤務時間</th>
+              <td>09:00〜18:00</td>
+            </tr>
+
+            <tr>
+              <th scope="row">勤務地</th>
+              <td>熊本県熊本市南区江越2丁目24-1</td>
+            </tr>
+
+            <tr>
+              <th scope="row">給与</th>
+              <td>月給：300,000円〜500,000円<br />時給×実働時間×勤務日数＝給与額 1050円×7時間×21日＝15万4350円 賞与〜</td>
+            </tr>
+
+            <tr>
+              <th scope="row">社会保険</th>
+              <td>フリーワードテキスト入力</td>
+            </tr>
+
+            <tr>
+              <th scope="row">福利厚生</th>
+              <td>フリーワードテキスト入力</td>
+            </tr>
+
+            <tr>
+              <th scope="row">応募資格</th>
+              <td>フリーワードテキスト入力</td>
+            </tr>
+
+            <tr>
+              <th scope="row">休日</th>
+              <td>完全週休2日制</td>
+            </tr>
+
+            <tr>
+              <th scope="row">応募方法</th>
+              <td>応募フォームもしくはお電話にて応募ください（096-XXX-XXXX：人事部◯◯まで）</td>
+            </tr>
+
+            <tr>
+              <th scope="row">採用までの流れ</th>
+              <td>1.ご応募 2.書類選考 3.適正テスト 4.面接 5.内定 （平均3週間〜1ヶ月以内）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mb-[5rem]">
+        <Btn href="/contact/" className="mx-auto w-[37rem]" color="black" icon={{ name: 'i-circle-arrow-right', width: 16, height: 16 }}>エントリーはこちら</Btn>
+      </p>
+
+      <p>
+        <Btn href="../" className="ml-auto min-h-[5rem] w-[20rem]" classNameLabel="text-[1.4rem] px-[1rem]" icon={{ name: 'i-circle-arrow-right', width: 16, height: 16 }}>職種一覧に戻る</Btn>
+      </p>
+    </Container>
+  </div>
+</Layout>

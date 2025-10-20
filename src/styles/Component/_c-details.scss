@@ -1,0 +1,85 @@
+/* detailsを使用したアコーディオン
+```
+```
+*/
+.c-details {
+  @apply overflow-hidden rounded-[0.8rem] shadow-[3px_3px_10px_3px_rgba(0,0,0,0.15)];
+
+  // .c-details__summary
+  &__summary {
+    @apply relative block cursor-pointer bg-theme py-[1.5rem] pl-[2rem] pr-[4rem] font-medium text-white;
+
+    &::before,
+    &::after {
+      @apply absolute right-0 top-1/2 h-[0.2rem] w-[2rem] origin-center bg-white content-[''];
+      transition: transform 0.4s var(--cb);
+    }
+
+    &::before {
+      @apply -translate-x-[1.5rem] -translate-y-1/2 rotate-[90deg];
+    }
+
+    &::after {
+      @apply -translate-x-[1.5rem] -translate-y-1/2;
+    }
+
+    &::-webkit-details-marker {
+      @apply hidden;
+    }
+  }
+
+  // .c-details__content
+  &__content {
+    @apply p-[2rem];
+  }
+
+  /* OPEN */
+  &[open] > .c-details__summary::before {
+    @apply -translate-x-[1.5rem] -translate-y-1/2 rotate-0;
+  }
+}
+
+.c-details-category {
+  @apply overflow-hidden;
+
+  // .c-details-category__summary
+  &__summary {
+    @apply relative flex cursor-pointer items-center justify-center rounded-[0.8rem] bg-theme py-[1.5rem] pl-[2rem] pr-[4rem] text-white;
+
+    &::-webkit-details-marker {
+      @apply hidden;
+    }
+
+    // .c-details-category__summary-label
+    &-label {
+      @apply text-[clamp(1.6rem,calc(20/768*100vw),2rem)] font-bold;
+    }
+  }
+
+  // .c-details-category__content
+  &__content {
+  }
+
+  // .c-details-category__body
+  &__body {
+    @apply mt-[2rem] rounded-[0.8rem] bg-gray-f5f5f5 px-[1.5rem] py-[2rem] md:px-[4rem] md:py-[2.5rem];
+  }
+
+  // .c-details-category__tags
+  &__tags {
+    @apply flex list-none flex-wrap gap-x-[1rem] gap-y-[1rem] pl-0 md:gap-x-[3rem] md:gap-y-[2.5rem];
+  }
+
+  // .c-details-category__tag
+  &__tag {
+    @apply block rounded-[50vh] border-[0.1rem] border-solid px-[1.5rem] py-[0.2rem] text-[1.3rem] md:px-[2.8rem] md:py-[0.5rem] md:text-[1.6rem];
+    transition:
+      color 0.4s var(--cb),
+      background-color 0.4s var(--cb),
+      border-color 0.4s var(--cb);
+
+    &:hover {
+      @apply border-theme bg-theme text-white no-underline;
+    }
+  }
+}

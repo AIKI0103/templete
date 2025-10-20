@@ -1,0 +1,36 @@
+{
+  /*
+  【WordPress】自動生成されるページネーションのhtml
+  the_posts_pagination(
+    array(
+      'mid_size' => 2, // 現在ページの左右に表示するページ番号の数
+      'prev_next' => true, // 「前へ」「次へ」のリンクを表示する場合はtrue
+      'prev_text' => __('前へ'), // 「前へ」リンクのテキスト
+      'next_text' => __('次へ'), // 「次へ」リンクのテキスト
+      'type' => 'list', // 戻り値の指定 (plain/list)
+    )
+  );
+*/
+}
+<nav class="navigation pagination" aria-label="投稿">
+  <h2 class="screen-reader-text">投稿ナビゲーション</h2>
+  <div class="nav-links">
+    <ul class="page-numbers">
+      <li>
+        <a class="prev page-numbers" href="./" aria-label="前へ"><svg width="5" height="9" class="" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-angle-left`}></use></svg></a>
+      </li>
+      <li><a class="page-numbers is-current-parent js-current" href="./">1</a></li>
+      <li><span class="page-numbers dots">…</span></li>
+      <li><a class="page-numbers" href="./">3</a></li>
+      <li><a class="page-numbers" href="./">4</a></li>
+      <li><span aria-current="page" class="page-numbers current">5</span></li>
+      <li><a class="page-numbers" href="./">6</a></li>
+      <li><a class="page-numbers" href="./">7</a></li>
+      <li><span class="page-numbers dots">…</span></li>
+      <li><a class="page-numbers" href="./">39</a></li>
+      <li>
+        <a class="next page-numbers" href="./" aria-label="次へ"><svg width="5" height="9" class="" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-angle-right`}></use></svg></a>
+      </li>
+    </ul>
+  </div>
+</nav>

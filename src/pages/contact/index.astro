@@ -1,0 +1,365 @@
+---
+import Container from '../../components/Blocks/Container.astro'
+import FormInput from '../../components/Form/FormInput.astro'
+import FormLabel from '../../components/Form/FormLabel.astro'
+import FormRadioCheckbox from '../../components/Form/FormRadioCheckbox.astro'
+import FormSelect from '../../components/Form/FormSelect.astro'
+import FormTextarea from '../../components/Form/FormTextarea.astro'
+import Wpcf7ResponseOutput from '../../components/Form/Wpcf7ResponseOutput.astro'
+import Layout from '../../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'page', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'contact',
+  isYubinbango: true, // yubinbango.jsの読み込み
+  isSimpleLayout: true, // シンプルレイアウト
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: 'お問い合わせ', // 基本必須（titleTagが優先される）
+  // titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: 'お問い合わせ',
+  subTitle: 'Contact',
+  bgImage: 'contact',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: seo.title,
+    href: '',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <section class="pb-[4rem] pt-[8rem]">
+    <Container size="sm" className="">
+      <header class="mb-[2rem]">
+        <h2 class="text-center text-[clamp(2.2rem,calc(30/768*100vw),3rem)] font-bold leading-[1.4]">
+          <span class="inline-block">XXXXXXXXでのお悩みは</span><span class="inline-block">何でもお気軽にご相談下さい。</span>
+        </h2>
+      </header>
+
+      <div class="mb-[4rem] flex justify-center">
+        <p class="md:text-center">お電話・Zoom等でサービス内容やお申込みの流れなどをわかりやすくお伝えします。<br />ご納得頂いた上で正式申込みとなります。まずはお気軽にお問い合わせください。</p>
+      </div>
+
+      <div class="bg-gray-f5f5f5 px-[1.5rem] py-[2rem] md:py-[3rem] lg:pb-[3.5rem]">
+        <p class="mb-[1rem] text-center text-[1.6rem] font-bold leading-[1.2] md:text-[2.4rem]">お急ぎの方はお電話を</p>
+
+        <p class="mb-[1rem] text-center font-bold leading-[1.2] md:mb-[1.8rem]">
+          <span class="inline-block px-[0.75rem] text-[2.6rem] md:text-[4rem] lg:px-[2.5rem]"><a href="tel:096-283-2600">TEL：096-283-2600</a></span>
+          <span class="my-[0.5rem] inline-block px-[0.75rem] text-[1.6rem] md:text-[2.5rem] lg:px-[2.5rem]">FAX：096-283-2602</span>
+        </p>
+
+        <p class="text-center">
+          <span class="inline-block px-[0.75rem]">お電話受付時間／月曜〜金曜</span>
+          <span class="inline-block px-[0.75rem]">9:00〜18:00（土日祝を除く）</span>
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-gray-f5f5f5 pb-[4rem] pt-[4.5rem]">
+    <Container size="md" className="lg:px-[2rem]">
+      <header class="mb-[2rem]">
+        <h2 class="text-center text-[clamp(2.2rem,calc(30/768*100vw),3rem)] font-bold leading-[1.4]">
+          <span class="inline-block">メールでの</span><span class="inline-block">お問い合わせの場合</span>
+        </h2>
+      </header>
+
+      <div class="mb-[4.5rem] flex justify-center">
+        <ul class="c-list text-[1.5rem] [&>li]:pl-[1em] [&>li]:indent-[-1em]">
+          <li>■電話番号欄には、必ず連絡の取れる電話番号（自宅もしくは携帯電話）をご入力ください。</li>
+          <li>■回答に時間がかかる場合がありますので、お急ぎの方はお電話にてお問い合わせください。</li>
+        </ul>
+      </div>
+
+      <div class="c-form-wrapper" data-form="cf7">
+        <div class="wpcf7">
+          <form action="" class="wpcf7-form h-adr invalid" novalidate>
+            <span class="p-country-name hidden">Japan</span>
+
+            <div class="c-form-frame">
+              <!-- 法人名 -->
+              <div class="c-form-item">
+                <div class="c-form-header">
+                  <FormLabel for="your-organization" labelName="法人名" isRequired={false} />
+                </div>
+
+                <div class="c-form-input">
+                  <FormInput
+                    id="your-organization"
+                    name="your-organization"
+                    type="text"
+                    labelName="法人名"
+                    value=""
+                    placeholder="◯◯株式会社"
+                    isRequired={false}
+                    autocomplete="organization"
+                    showValidTip={false}
+                  />
+                </div>
+              </div>
+
+              <!-- お名前 -->
+              <div class="c-form-item">
+                <div class="c-form-header">
+                  <FormLabel for="your-name" labelName="お名前" isRequired={true} />
+                </div>
+
+                <div class="c-form-input">
+                  <FormInput id="your-name" name="your-name" type="text" labelName="お名前" value="" placeholder="名字 名前" isRequired={true} autocomplete="name" showValidTip={true} />
+                </div>
+              </div>
+
+              <!-- お問い合わせ内容 -->
+              <div class="c-form-item">
+                <div class="c-form-header">
+                  <FormLabel for="your-message" labelName="お問い合わせ内容" isRequired={true} />
+                </div>
+
+                <div class="c-form-input">
+                  <FormTextarea
+                    id="your-message"
+                    name="your-message"
+                    labelName="お問い合わせ内容"
+                    placeholder="例)ホームページリニューアルの件について見積もりが欲しいので、とりあえず電話連絡が欲しい。"
+                    isRequired={true}
+                    showValidTip={false}
+                  />
+                </div>
+              </div>
+
+              <!-- メールアドレス -->
+              <div data-inputCopyText="email-copy" class="c-form-item">
+                <div class="c-form-header">
+                  <FormLabel for="your-mail" labelName="メールアドレス" isRequired={true} />
+                </div>
+
+                <div class="c-form-input">
+                  <FormInput
+                    id="your-mail"
+                    name="your-mail"
+                    type="email"
+                    labelName="メールアドレス"
+                    value=""
+                    placeholder="例）example@example.com"
+                    isRequired={true}
+                    autocomplete="email"
+                    showValidTip={false}
+                    inputmode="email"
+                    isReadonly={false}
+                  />
+
+                  <div class="c-form-block-emailcheck">
+                    <p class="c-form-block-emailcheck__input" id="email-copy"></p>
+                    <p class="c-form-block-emailcheck__help">※上記メールアドレスにお間違えがないか、今一度ご確認ください。</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 電話番号 -->
+              <div class="c-form-item">
+                <div class="c-form-header">
+                  <FormLabel for="your-tel" labelName="電話番号" isRequired={true} />
+                </div>
+
+                <div class="c-form-input" data-toHarfNum="your-tel">
+                  <FormInput
+                    id="your-tel"
+                    name="your-tel"
+                    type="tel"
+                    labelName="電話番号"
+                    value=""
+                    placeholder="00000000000"
+                    isRequired={true}
+                    autocomplete="tel"
+                    showValidTip={false}
+                    inputmode="tel"
+                    isReadonly={false}
+                  />
+                </div>
+              </div>
+
+              <!-- 住所 -->
+              <div class="c-form-item" role="group" aria-labelledby="address-group">
+                <div class="c-form-header">
+                  <FormLabel id="address-group" labelName="住所" isRequired={false} />
+                </div>
+
+                <div class="c-form-input c-form-block-address" data-toHarfNum="postal-code">
+                  <span class="c-form-block-address__postalcode">
+                    <span class="c-form-block-address__postalcode-sub">〒</span>
+                    <span class="c-form-block-address__postalcode-label">
+                      <FormInput
+                        id="postal-code"
+                        name="postal-code"
+                        type="text"
+                        labelName="郵便番号"
+                        value=""
+                        size="16"
+                        maxlength="8"
+                        placeholder="0000000"
+                        isRequired={false}
+                        autocomplete="postal-code"
+                        showValidTip={false}
+                        inputmode="numeric"
+                        isReadonly={false}
+                        className="p-postal-code"
+                      />
+                    </span>
+                  </span>
+                  <span class="c-form-block-address__item">
+                    <span class="c-form-block-address__item-sub">住所</span>
+                    <span class="c-form-block-address__item-label">
+                      <FormInput
+                        id="address-line1"
+                        name="address-line1"
+                        type="text"
+                        labelName="市区町村"
+                        value=""
+                        placeholder="◯◯県◯◯市◯◯区123-4"
+                        isRequired={false}
+                        autocomplete="address-line1"
+                        showValidTip={false}
+                        inputmode="numeric"
+                        isReadonly={false}
+                        className="p-region p-locality p-street-address"
+                      />
+                    </span>
+                  </span>
+                  <span class="c-form-block-address__item">
+                    <span class="c-form-block-address__item-sub">建物・部屋番号</span>
+                    <span class="c-form-block-address__item-label">
+                      <FormInput
+                        id="address-line2"
+                        name="address-line2"
+                        type="text"
+                        labelName="建物・部屋番号"
+                        value=""
+                        placeholder="1234号"
+                        isRequired={true}
+                        autocomplete="address-line2"
+                        showValidTip={false}
+                        inputmode="numeric"
+                        isReadonly={false}
+                        className="p-extended-address"
+                      />
+                    </span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- ご希望のご連絡方法 -->
+              <div class="c-form-item" role="group" aria-labelledby="your-contact-type-label">
+                <div class="c-form-header">
+                  <FormLabel id="your-contact-type-label" labelName="ご希望のご連絡方法" isRequired={false} />
+                </div>
+
+                <div class="c-form-input c-form-lists mb-[-.8rem]">
+                  <FormRadioCheckbox
+                    type="radio"
+                    name="your-contact-type"
+                    lists={[
+                      { value: 'お電話', label: 'お電話', checked: true },
+                      { value: 'メール', label: 'メール', checked: false },
+                      { value: 'FAX', label: 'FAX', checked: false },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- チェックボックス -->
+              <div class="c-form-item" role="group" aria-labelledby="your-checkbox-label">
+                <div class="c-form-header">
+                  <FormLabel id="your-checkbox-label" labelName="チェックボックス" isRequired={false} />
+                </div>
+
+                <div class="c-form-input c-form-lists">
+                  <FormRadioCheckbox
+                    type="checkbox"
+                    name="your-checkbox"
+                    lists={[
+                      { value: '項目1', label: '項目1', checked: true },
+                      { value: '項目2', label: '項目2', checked: false },
+                      { value: '項目3', label: '項目3', checked: false },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- セレクトボックス -->
+              <div class="c-form-item">
+                <div class="c-form-header">
+                  <FormLabel for="your-selectbox" labelName="セレクトボックス名" isRequired={false} />
+                </div>
+
+                <div class="c-form-input">
+                  <FormSelect name="your-selectbox" id="your-selectbox" labelName="セレクトボックス名" options={['以下から選択してください', '項目01', '項目02']} />
+                </div>
+              </div>
+
+              <!-- 個人情報の取扱い -->
+              <div class="c-form-item">
+                <div class="c-form-header">
+                  <FormLabel for="acceptance" labelName="個人情報の取扱い" isRequired={true} />
+                </div>
+
+                <div data-cf-agree="check" class="c-form-input c-form-lists c-form-acceptance">
+                  <p class="mb-[1rem] text-[1.4rem] md:text-[1.6rem] lg:mb-[2.5rem]">
+                    当⚫︎⚫︎<span class="bg-[red] font-bold">（※※※ 当社、当院、当クラブ等に変更 ※※※）</span>の<a href="/privacy/" target="_blank" class="text-theme underline underline-offset-[.3em]"
+                      >個人情報の取扱い</a
+                    >について同意し下記チェックを入れた方のみ送信できます。<br />※「このサイトはreCAPTCHAによって保護されており、Googleの<a
+                      class="text-theme underline underline-offset-[.3em]"
+                      target="_blank"
+                      href="https://policies.google.com/privacy">プライバシーポリシー</a
+                    >と<a class="text-theme underline underline-offset-[.3em]" href="https://policies.google.com/terms" target="_blank">利用規約</a>が適用されます。
+                  </p>
+                  <FormRadioCheckbox type="checkbox" name="acceptance" lists={[{ value: '1', label: '個人情報の取扱いに同意する', checked: false }]} />
+                </div>
+              </div>
+            </div>
+
+            <Container size="sm" className="max-w-full py-[2rem] md:py-[4rem]">
+              <p class="mb-[4rem] text-[1.4rem] md:mb-[5.5rem] md:text-[1.5rem]">
+                お問い合わせいただいたお客様には、自動で受付確認メールを送信しております。<br />
+                受付確認メールを受信されていないお客様は、当⚫︎⚫︎<span class="bg-[red] font-bold">（※※※ 当社、当院、当クラブ等に変更 ※※※）</span
+                >からのメールを受信拒否されている恐れがございますので、ご確認お願いいたします。<br />
+                <span class="text-theme">example.com</span>のドメイン指定受信の設定をお願いいたします。<br />
+                ※その他、ご不明な点やご質問等がございましたら、お気軽にお問い合わせください。
+              </p>
+
+              <!-- Wpcf7ResponseOutput -->
+              <Wpcf7ResponseOutput />
+
+              <!-- c-form-submit -->
+              <div class="c-form-submit is-disabled" data-cf-agree="submit">
+                <div class="c-form-submit__btn">
+                  <input type="submit" value="内容を確認し送信する" aria-label="内容を確認し送信する" class="wpcf7-form-control wpcf7-submit" id="cf-submit" />
+                  <span class="ajax-loader"></span>
+                  <svg width="16" height="16" class="c-form-submit__btn-i" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-circle-arrow-right`}></use></svg>
+                </div>
+              </div>
+            </Container>
+          </form>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>

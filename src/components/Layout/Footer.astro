@@ -1,0 +1,10 @@
+---
+const { isHome, page } = Astro.props
+---
+
+<footer data-component="Footer" id="footer" class="l-body__footer">
+  <div class="c-footer">
+    {!page.isSimpleLayout && <p>シンプルレイアウト以外の表示</p>}
+    <small class="c-footer-copyright">&copy;20XX All Rights Reserved.</small>
+  </div>
+</footer>

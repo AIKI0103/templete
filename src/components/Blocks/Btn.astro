@@ -1,0 +1,30 @@
+---
+interface Props {
+  href: string
+  target?: '_blank' | null | undefined
+  id?: string
+  className?: string
+  classNameLabel?: string
+  color?: 'black'
+  type?: 'outline'
+  icon?: {
+    name: string
+    width: number
+    height: number
+  }
+}
+
+const { href, target = null, id, className = '', classNameLabel = '', color = '', type = '', icon } = Astro.props
+---
+
+<a href={href} target={target} id={id && id} class:list={['c-btn', color && `c-btn--${color}`, type === 'outline' ? 'c-btn--outline' : undefined, className]}>
+  <span class:list={['c-btn__label', classNameLabel]}><slot /></span>
+
+  {
+    icon && (
+      <svg width={icon.width} height={icon.height} class:list={['c-btn__icon']} aria-hidden="true">
+        <use href={`/assets/svg/sprite.svg#${icon.name}`} />
+      </svg>
+    )
+  }
+</a>

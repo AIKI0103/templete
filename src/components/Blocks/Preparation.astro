@@ -1,0 +1,26 @@
+---
+import Btn from '../../components/Blocks/Btn.astro'
+
+interface Props {
+  className?: string
+}
+
+const { className = '' } = Astro.props
+---
+
+<section class={`pb-[6rem] pt-[4rem] md:pt-[6rem] ${className}`}>
+  <div class="mx-auto w-max max-w-[calc(100%-4rem)]">
+    <h2 class="text-center text-[clamp(2rem,calc(24/768*100vw),2.4rem)] font-bold leading-[1.4]">お探しのページは<span class="inline-block">準備中です</span></h2>
+
+    <div class="py-[4rem] [&>*]:text-center">
+      <p class="mb-[1rem]">申し訳ございません。<span class="inline-block">お探しのページはただいま準備中です。</span></p>
+      <p>公開までしばらくお待ちください。</p>
+    </div>
+
+    <p>
+      <Btn href="/" className="mx-auto">トップページへ移動</Btn>
+    </p>
+  </div>
+
+  <slot />
+</section>

@@ -1,0 +1,103 @@
+---
+import WpEzToc from '../../components/Wp/WpEzToc.astro'
+import WpSampleText from '../../components/Wp/WpSampleText.astro'
+import WpShare from '../../components/Wp/WpShare.astro'
+import Layout from '../../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'single', // home | page | single
+  sub: true, // サブエリアの追加
+  slug: 'news',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: 'ここにお知らせのタイトルを表示する。省略せず全文表示（全角32〜40文字目安） | お知らせ', // 基本必須（titleTagが優先される）
+  // titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: 'お知らせ',
+  subTitle: 'News',
+  bgImage: 'news',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: 'お知らせ',
+    href: '../',
+  },
+  {
+    text: 'ここにお知らせのタイトルを表示する。省略せず全文表示（全角32〜40文字目安）',
+    href: '',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <div class="pb-[5rem] md:pb-[15.5rem]">
+    <article class="c-post">
+      <header class="c-post__header">
+        <time class="c-post__date" datetime="2024-01-01">
+          <svg width="16" height="15" class="mr-[0.8rem]" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-calendar`}></use></svg>
+          2024.01.01
+        </time>
+
+        <h1 class="c-post__title">ここにお知らせのタイトルを表示する。省略せず全文表示（全角32〜40文字目安）</h1>
+
+        <ul class="c-post__tags">
+          <li><span class="c-post__tag">お知らせ</span></li>
+          <li><span class="c-post__tag">重要なお知らせ</span></li>
+          <li><span class="c-post__tag">長いカテゴリー名の場合長いカテゴリー名の場合</span></li>
+          <li><span class="c-post__tag">その他</span></li>
+          <li><span class="c-post__tag">カテゴリーA</span></li>
+          <li><span class="c-post__tag">カテゴリーB</span></li>
+        </ul>
+      </header>
+
+      <div class="c-editor">
+        {/* 目次 */}
+        <WpEzToc />
+
+        {/* サンプルテキスト */}
+        <WpSampleText />
+      </div>
+
+      {/* シェアボタン */}
+      <WpShare />
+
+      <div class="c-pager">
+        <div class="c-pager__home">
+          <a href="/news/" class="c-pager-btn">
+            <svg width="16" height="12" class="c-pager-btn__i" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-list`}></use></svg>
+            <span class="c-pager-btn__label">一覧へ戻る</span>
+          </a>
+        </div>
+
+        <div class="c-pager__zengo c-pager__zengo--prev">
+          <a href="/news/" class="c-pager-btn">
+            <span class="c-pager-btn__label">前の記事へ</span>
+            <svg width="16" height="16" class="c-pager-btn__i" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-circle-arrow-left`}></use></svg>
+          </a>
+        </div>
+
+        <div class="c-pager__zengo c-pager__zengo--next">
+          <span class="c-pager-btn">
+            <span class="c-pager-btn__label">次の記事へ</span>
+            <svg width="16" height="16" class="c-pager-btn__i" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-circle-arrow-right`}></use></svg>
+          </span>
+        </div>
+      </div>
+    </article>
+  </div>
+</Layout>

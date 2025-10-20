@@ -1,0 +1,133 @@
+---
+// Heroセクション（画面上部の見出しや画像など）を読み込む
+import Hero from '../../components/Layout/Hero.astro'
+// モバイル用のメニュートグルボタン（ハンバーガーメニューなど）を読み込む
+import MenuToggle from '../../components/Layout/MenuToggle.astro'
+//	親から渡された props を受け取って変数にしている
+const { isHome, page, hero } = Astro.props
+//	トップページなら h1、それ以外は div をタグとして使うようにしている
+const LogoTag = isHome ? 'h1' : 'div'
+---
+
+<!--
+  サイト全体のヘッダー領域。
+  - `data-component="Header"` はJSやデバッグ用の識別マーク
+  - `id="header"` はアンカーリンクやスクリプトでの参照用
+  - `class="l-body__header"` はレイアウト用のクラス（レイアウトBEM設計）今は使用してない
+-->
+<header data-component="Header" id="header" class="l-body__header">
+  <!--
+  ヘッダーの見た目・構造を定義するコンテナ要素。
+  - `data-view-over="header"` は JSでのビュー切り替えや追従判定のためのカスタム属性
+  - `class="c-header"` はヘッダー用のスタイル（component設計：見た目・装飾を担当）
+  - `id="header-target"` はJSなどでこの要素を特定するための識別子
+ -->
+  <div data-view-over="header" class="c-header" id="header-target">
+    <div class="c-header__main">
+      <div id="header-logo" class:list={['c-header__logo', page.isSimpleLayout && 'pointer-events-none']}>
+        <LogoTag class="c-header__logo-label">
+          <span data-component="Logo" class="c-logo">
+            <a href="/" class="c-logo__link">
+              <img src="/assets/images/common/logo.svg" decoding="async" width="200" height="56" class="c-logo__symbol" alt="アルサーガパートナーズ株式会社 Arsaga Partners, Inc." />
+              <span class="c-logo__label">フロンティアビジョンスタジオ</span>
+            </a>
+          </span>
+        </LogoTag>
+      </div>
+
+      {
+        // MenuToggle コンポーネントを実際に呼び出しているところ
+        !page.isSimpleLayout && (
+          <div class="c-header__nav">
+            <nav id="global-menu">
+              <ul class="c-nav-global">
+                <li class="c-nav-global__item js-dropdown js-drawerInAccordion">
+                  <button type="button" class="c-nav-global__link" aria-expanded="true" aria-controls="nav-dropdown-hover" data-accordion="summary">
+                    <span class="c-nav-global__link-label">ドロップダウン（ホバー）</span>
+                  </button>
+                  <div id="nav-dropdown-hover" class="c-nav-dropdown" data-accordion="content">
+                    <ul class="c-nav-global-child">
+                      <li class="c-nav-global-child__item">
+                        <a href="/works/" class="c-nav-global-child__link">
+                          <span class="c-nav-global-child__link-label">実績</span>
+                        </a>
+                      </li>
+                      <li class="c-nav-global-child__item">
+                        <a href="/recruit/" class="c-nav-global-child__link">
+                          <span class="c-nav-global-child__link-label">求人情報</span>
+                        </a>
+                      </li>
+                      <li class="c-nav-global-child__item">
+                        <a href="/privacy/" class="c-nav-global-child__link">
+                          <span class="c-nav-global-child__link-label">プライバシーポリシー</span>
+                        </a>
+                      </li>
+                      <li class="c-nav-global-child__item">
+                        <a href="/accessibility/" class="c-nav-global-child__link">
+                          <span class="c-nav-global-child__link-label">アクセシビリティ</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li class="c-nav-global__item js-clickdown js-drawerInAccordion">
+                  <button type="button" class="c-nav-global__link" aria-expanded="true" aria-controls="nav-dropdown-click" data-accordion="summary">
+                    <span class="c-nav-global__link-label">ドロップダウン（クリック）</span>
+                  </button>
+                  <div id="nav-dropdown-click" class="c-nav-dropdown" data-accordion="content">
+                    <ul class="c-nav-global-child">
+                      <li class="c-nav-global-child__item">
+                        <a href="/works/" class="c-nav-global-child__link">
+                          <span class="c-nav-global-child__link-label">実績</span>
+                        </a>
+                      </li>
+                      <li class="c-nav-global-child__item">
+                        <a href="/recruit/" class="c-nav-global-child__link">
+                          <span class="c-nav-global-child__link-label">求人情報</span>
+                        </a>
+                      </li>
+                      <li class="c-nav-global-child__item">
+                        <a href="/privacy/" class="c-nav-global-child__link">
+                          <span class="c-nav-global-child__link-label">プライバシーポリシー</span>
+                        </a>
+                      </li>
+                      <li class="c-nav-global-child__item">
+                        <a href="/accessibility/" class="c-nav-global-child__link">
+                          <span class="c-nav-global-child__link-label">アクセシビリティ</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li class="c-nav-global__item">
+                  <a href="/news/" class="c-nav-global__link">
+                    <span class="c-nav-global__link-label">お知らせ</span>
+                  </a>
+                </li>
+
+                <li class="c-nav-global__item">
+                  <a href="/contact/" class="c-nav-global__link">
+                    <span class="c-nav-global__link-label">お問い合わせ</span>
+                  </a>
+                </li>
+
+                <li class="c-nav-global__item">
+                  <a href="/sample/" class="c-nav-global__link">
+                    <span class="c-nav-global__link-label">サンプルページ</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  {!page.isSimpleLayout && <MenuToggle id="menu-toggle" label="メニュー" controls="global-menu-drawer" className="" />}
+  {/* ここにdrawer.jsによってDrawerコンポーネントが生成され#global-menuがclonesされる */}
+
+  {!isHome && hero && <Hero page={page} hero={hero} />}
+</header>

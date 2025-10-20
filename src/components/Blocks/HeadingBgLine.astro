@@ -1,0 +1,17 @@
+---
+interface Props {
+  id?: string
+  className?: string
+  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p'
+}
+
+const { id, className = '', tag = 'h2' } = Astro.props
+const Wrapper = tag === 'h2' ? 'header' : 'div'
+const MarkUp = `${tag}`
+---
+
+<Wrapper id={id && id} class:list={['c-heading-bgLine', className]}>
+  <MarkUp class:list={['c-heading-bgLine__label']}>
+    <slot />
+  </MarkUp>
+</Wrapper>

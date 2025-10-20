@@ -1,0 +1,32 @@
+/* ////////////////////////////
+@プロジェクトごとに変更する設定
+//////////////////////////// */
+/* ブレークポイント・コンテナ */
+$lg: 1024; /* ブレークポイント（デスクトップ）（単位不要） */
+$md: 768; /* ブレークポイント（タブレット）（単位不要） */
+$container-max: 1400; /* デザインカンプの最大幅（単位不要） */
+$container: 1170; /* メインコンテンツの幅（単位不要） */
+$container-large: 1280; /* ラージコンテンツの幅（単位不要） */
+$container-medium: 970; /* ミディアムコンテンツの幅（単位不要） */
+$container-small: 770; /* スモールコンテンツの幅（単位不要） */
+$container-xsmall: 570; /* スモールコンテンツの幅（単位不要） */
+
+/* ////////////////////////////
+@基本設定
+//////////////////////////// */
+/* 将来的にネイティブ対応が予想されるカスタムメディア（PostCSSのプラグインで対応） */
+
+/* 例：@media (--min-lg) {} */
+@custom-media --min-max (min-width: #{$container-max}px);
+@custom-media --min-container (min-width: #{$container}px);
+@custom-media --min-lg (min-width: #{$lg}px);
+@custom-media --min-md (min-width: #{$md}px);
+@custom-media --max-max (max-width: #{$container-max - 0.02}px);
+@custom-media --max-container (max-width: #{$container - 0.02}px);
+@custom-media --max-lg (max-width: #{$lg - 0.02}px);
+@custom-media --max-md (max-width: #{$md - 0.02}px);
+@custom-media --landscape (orientation: landscape);
+@custom-media --portrait (orientation: portrait);
+@custom-media --asp-16-9 (max-aspect-ratio: 16/9);
+@custom-media --asp-4-3 (max-aspect-ratio: 4/3);
+@custom-media --retina (min-resolution: 2dppx);

@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'page', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: '404',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: 'このページは存在しません', // 基本必須（titleTagが優先される）
+  // titleTag: '', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: 'このページは存在しません',
+  subTitle: 'Not Found',
+  bgImage: 'sample',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: seo.title,
+    href: '',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <section class="pb-[6rem] pt-[4rem] md:pt-[6rem]">
+    <div class="mx-auto w-max max-w-[calc(100%-4rem)]">
+      <h2 class="text-center text-[clamp(2rem,calc(24/768*100vw),2.4rem)] font-bold leading-[1.4]">お探しのページは<span class="inline-block">見つかりませんでした</span></h2>
+
+      <div class="py-[4rem] [&>*]:text-center">
+        <p class="mb-[1rem]">申し訳ございません。<span class="inline-block">お探しのページは見つかりませんでした。</span></p>
+        <p>既に削除されてしまったか、<span class="inline-block">URLが間違っているのかもしれません。</span></p>
+      </div>
+
+      <p>
+        <a href="/" class="c-btn mx-auto">
+          <span class="c-btn__label">トップページへ移動</span>
+        </a>
+      </p>
+    </div>
+  </section>
+</Layout>

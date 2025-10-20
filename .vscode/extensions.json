@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "deque-systems.vscode-axe-linter",
+    "yusukehirao.vscode-markuplint",
+    "esbenp.prettier-vscode",
+  ],
+  "unwantedRecommendations": []
+}

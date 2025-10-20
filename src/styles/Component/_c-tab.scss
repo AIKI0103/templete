@@ -1,0 +1,18 @@
+/* タブUI
+```
+```
+*/
+
+.c-tab {
+  // .c-tab__lists
+  &__lists {
+  }
+  // .c-tab__list
+  &__list {
+    button {
+      &:focus-visible {
+        outline: -webkit-focus-ring-color auto 1px;
+      }
+    }
+  }
+}

@@ -1,0 +1,127 @@
+---
+import Container from '../../components/Blocks/Container.astro'
+import HeadingBgLine from '../../components/Blocks/HeadingBgLine.astro'
+import HeadingLine from '../../components/Blocks/HeadingLine.astro'
+import Layout from '../../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'page', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'accessibility',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: 'ウェブアクセシビリティ方針', // 基本必須（titleTagが優先される）
+  // titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: 'ウェブアクセシビリティ方針',
+  subTitle: 'Accessibility',
+  bgImage: 'accessibility',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: seo.title,
+    href: '',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <section class="py-[5rem] md:py-[7rem]">
+    <Container size="md" className="">
+      <HeadingLine className="mb-[1.5rem]" size="lg">ウェブアクセシビリティ方針</HeadingLine>
+      <div class="c-textarea mb-[3rem]">
+        <p>
+          株式会社◯◯◯◯◯◯のホームページは、高齢者や障害者を含む誰もが利用できるものとなるよう、日本工業規格 JIS X 8341-3:2016「高齢者・
+          障害者等配慮設計指針−情報通信における機器，ソフトウェア及びサービス−第 3 部:ウェブコンテンツ」（以下「JIS X 8341-3:2016」
+          という。）に対応することを目標とし、アクセシビリティの確保と向上に取り組んでいます。
+        </p>
+      </div>
+
+      <div class="py-[2rem] md:py-[2.5rem]">
+        <HeadingBgLine className="mb-[1.5rem]">1.対象範囲</HeadingBgLine>
+        <div class="c-textarea">
+          <p class="mb-[2rem]">株式会社◯◯◯◯◯◯の公式ホームページ（https://○○○○○○○○/）一式</p>
+
+          <p class="mb-[2rem]">ただし、次のウェブページついては修正が困難であるため対象範囲から除外し、今後整理・検討のうえ、運用上対応が可能なものは更新・ 改修時に対応を進めます。</p>
+
+          <ul>
+            <li>PDF ファイル・Word ファイル・Excel ファイル等の HTML 形式ではないコンテンツ</li>
+            <li>動画を埋め込んでいるウェブページ</li>
+            <li>更新システムを利用しているコンテンツ</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="py-[2rem] md:py-[2.5rem]">
+        <HeadingBgLine className="mb-[1.5rem]">2.目標とする適合レべル及び対応度</HeadingBgLine>
+        <div class="c-textarea">
+          <p class="mb-[2rem]">1に掲げる対象範囲においては JIS X 8341-3:2016 のウェブアクセシビリティ適合レべル A に準拠</p>
+
+          <p>
+            注記:当ウェブアクセシビリティ方針における「準拠」という表記は、情報通信アクセス協議会ウェブアクセシビリティ基盤委員会「ウェブコンテンツの JIS X 8341-3:2016 対応度表記ガイドライン –
+            2016年3月22日」<br />（URL：<a href="https://waic.jp/docs/jis2016/compliance-guidelines/201603/" target="_blank" class="text-theme-0600ff"
+              >https://waic.jp/docs/jis2016/compliance-guidelines/201603/</a
+            >）で定められた表記による。
+          </p>
+        </div>
+      </div>
+
+      <div class="py-[2rem] md:py-[2.5rem]">
+        <HeadingBgLine className="mb-[1.5rem]">3.スケジュール</HeadingBgLine>
+        <div class="c-textarea">
+          <ol class="c-list">
+            <li class="mb-[1rem] pl-[1.5em] -indent-[1.5em] md:mb-[2rem]">（1）2024年 3月:試験内容を公表する</li>
+            <li class="pl-[1.5em] -indent-[1.5em]">（2）2024年 3月以降:毎年度試験を実施し、状況に応じて本方針を見直す。</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="py-[2rem] md:py-[2.5rem]">
+        <HeadingBgLine className="mb-[1.5rem]">4.試験結果</HeadingBgLine>
+        <div class="c-textarea">
+          <p class="mb-[2rem]">
+            アクセシビリティへの対応の確認のため、「JIS X 8341-3:2016 附属書JB（参考）試験方法」に示された内容を踏まえた試験を実施し、その結果を株式会社◯◯◯◯◯◯のホームページで公開します。
+          </p>
+
+          <ul class="c-list">
+            <li class="mb-[1rem] pl-[1em] -indent-[1em]">
+              <a href="/accessibility/result2024/" class="text-theme-0600ff">＞2024年度試験結果</a>
+            </li>
+            <li class="mb-[1rem] pl-[1em] -indent-[1em]">
+              <a href="/accessibility/result2024/" class="text-theme-0600ff">＞2023年度試験結果</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="py-[2rem] md:py-[2.5rem]">
+        <HeadingBgLine className="mb-[1.5rem]">5.お問い合わせ先</HeadingBgLine>
+        <div class="c-textarea">
+          <address>
+            <p><span class="mr-[0.5rem] inline-block">〒XXXX-XXXXX</span><span class="inline-block">◯◯県◯◯市◯1-2-34</span></p>
+            <p>株式会社◯◯◯◯◯◯◯◯</p>
+            <p>
+              <a href="tel:000-000-0000" class="inline-block">TEL:000-000-0000</a><span class="inline-block">（電話受付：平日0:00〜00:00）</span>
+              <p>FAX:000-000-0000</p>
+            </p>
+          </address>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>

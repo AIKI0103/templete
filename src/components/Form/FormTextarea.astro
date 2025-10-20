@@ -1,0 +1,24 @@
+---
+import type { InputType } from './types.ts'
+
+// type以外を継承
+interface Props extends Omit<InputType, 'type'> {
+  col?: number
+  row?: number
+}
+
+const { id, name, labelName, placeholder, isRequired = false, showValidTip = false, className = '', col = 30, row = 6 } = Astro.props
+---
+
+<span data-component="FormSelect" class="wpcf7-form-control-wrap">
+  <textarea id={id} name={name} aria-label={labelName} class:list={[className]} placeholder={placeholder && placeholder} required={isRequired} cols={col} rows={row}></textarea>
+</span>
+{
+  showValidTip && (
+    <span class="wpcf7-not-valid-tip" aria-hidden="true">
+      必須項目に入力してください。
+      <br />
+      （このタグは自動で挿入されます。※WP実装時は削除）
+    </span>
+  )
+}

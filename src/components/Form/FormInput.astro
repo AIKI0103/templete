@@ -1,0 +1,51 @@
+---
+import type { InputType } from './types.ts'
+
+interface Props extends InputType {}
+
+const {
+  id,
+  name,
+  type = 'text',
+  labelName,
+  value,
+  placeholder,
+  isRequired = false,
+  autocomplete,
+  showValidTip = false,
+  inputmode,
+  isReadonly = false,
+  size = null,
+  maxlength = null,
+  minlength = null,
+  pattern = null,
+  className = '',
+} = Astro.props
+---
+
+<span data-component="FormInput" class="wpcf7-form-control-wrap">
+  <input
+    id={id}
+    name={name}
+    type={type}
+    aria-label={labelName}
+    class:list={['wpcf7-form-control', className]}
+    value={value && value}
+    placeholder={placeholder && placeholder}
+    required={isRequired}
+    autocomplete={autocomplete && autocomplete}
+    inputmode={inputmode && inputmode}
+    readonly={isReadonly}
+    size={size && size}
+    maxlength={maxlength && maxlength}
+    minlength={minlength && minlength}
+    pattern={pattern && pattern}
+  />
+  {
+    showValidTip && (
+      <span class="wpcf7-not-valid-tip" aria-hidden="true">
+        必須項目に入力してください。
+      </span>
+    )
+  }
+</span>

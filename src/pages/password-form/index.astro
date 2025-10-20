@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'page', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'text',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: '【WordPress】パスワード保護ページ', // 基本必須（titleTagが優先される）
+  // titleTag: '', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: '【WordPress】パスワード保護ページ',
+  subTitle: 'Password Form',
+  bgImage: 'sample',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: seo.title,
+    href: '',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <form action="/" class="post-password-form" method="post">
+    <p>このコンテンツはパスワードで保護されています。閲覧するには以下にパスワードを入力してください。</p>
+    <p><label for="pwbox-527">パスワード: <input name="post_password" id="pwbox-527" type="password" spellcheck="false" size="20" /></label> <input type="submit" name="Submit" value="確定" /></p>
+  </form>
+</Layout>

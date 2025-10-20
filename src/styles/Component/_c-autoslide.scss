@@ -1,0 +1,37 @@
+.c-autoslide {
+  @apply flex;
+
+  // .c-autoslide__item
+  &__item {
+    @apply relative flex flex-[0_0_auto] list-none pl-0 will-change-transform [backface-visibility:hidden] [transform:translateZ(0)];
+  }
+}
+
+.c-autoslide-control {
+  @apply block;
+
+  @media (prefers-reduced-motion: reduce) {
+    @apply hidden; // アニメーション自体をOFFにするため不要
+  }
+
+  // .c-autoslide-control__i
+  &__i {
+    @apply block;
+
+    // .c-autoslide-control__i--play
+    &--play {
+      @apply block;
+      .is-active & {
+        @apply hidden;
+      }
+    }
+
+    // .c-autoslide-control__i--pause
+    &--pause {
+      @apply block;
+      .is-deactive & {
+        @apply hidden;
+      }
+    }
+  }
+}

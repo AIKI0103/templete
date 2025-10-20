@@ -1,0 +1,89 @@
+/* ダイアログ
+```
+参考:https://www.tak-dcxi.com/article/modal-implementation-in-2025/
+```
+*/
+.c-dialog {
+  --close-size: 5rem;
+  --modal-w: 50rem;
+  position: fixed; /* Safariで表示に不具合があるので明示する */
+  inset: 0; /* Safariで表示に不具合があるので明示する */
+  transition-duration: 0.25s;
+  overscroll-behavior-block: contain;
+  transition-property: display, overlay, opacity;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+  @apply w-[var(--modal-w)] max-w-[calc(100%-4rem)] border-none p-0;
+  @apply w-[calc(var(--modal-w)+var(--close-size))];
+  background: none;
+
+  @media (--min-md) {
+    --close-size: 6.4rem;
+  }
+  @media (--min-lg) {
+    @apply pr-[calc(var(--close-size)/2)];
+  }
+
+  &::backdrop {
+    @apply bg-black/80;
+    backdrop-filter: blur(0.5rem);
+    transition-duration: inherit;
+    transition-property: opacity;
+    transition-timing-function: inherit;
+  }
+
+  &:modal,
+  &:modal::backdrop {
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  &:not(:modal),
+  &:not(:modal)::backdrop {
+    opacity: 0;
+  }
+
+  // .c-dialog__inner
+  &__inner {
+    @apply relative;
+  }
+
+  // .c-dialog__close
+  &__close {
+    @apply relative z-[1] mb-[calc((var(--close-size)/2)*-1)] ml-auto block h-[var(--close-size)] w-[var(--close-size)] rounded-full border-[.2rem] border-solid border-white bg-text text-white;
+    transition:
+      color 0.4s var(--cb),
+      background-color 0.4s var(--cb);
+
+    @media (--min-lg) {
+      @apply mr-[calc((var(--close-size)/2)*-1)];
+    }
+
+    @media (any-hover: hover) {
+      &:hover,
+      &:focus-visible {
+        @apply bg-theme;
+        text-decoration: none;
+      }
+    }
+
+    &::before,
+    &::after {
+      @apply absolute left-1/2 top-1/2 h-[.2rem] w-[2.5rem] -translate-x-1/2 -translate-y-1/2 bg-current content-[''];
+    }
+
+    &::before {
+      @apply rotate-45;
+    }
+
+    &::after {
+      @apply -rotate-45;
+    }
+  }
+
+  // .c-dialog__container
+  &__container {
+    @apply relative max-h-[calc(100vh-10rem)] min-h-full overflow-auto rounded-[.8rem] bg-white;
+  }
+}

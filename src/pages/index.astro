@@ -1,0 +1,39 @@
+---
+import Container from '../components/Blocks/Container.astro'
+import Layout from '../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'home', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'front',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  // title: 'ページタイトル', // 基本必須（titleTagが優先される）
+  titleTag: 'FVスタンダード｜技術Div.共通静的テンプレート', // 必要あれば（タイトルタグ上書き）
+  description: '案件共通のコンポーネントやロジックを標準搭載した、技術Div.共通静的テンプレート「FVスタンダード」', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = false
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = false
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <section class="h-[calc(100lvh-10rem)] bg-gray-f5f5f5 py-[5rem] md:py-[8rem]">
+    <Container size="base" className="h-full">
+      <div class="flex h-full flex-col justify-center">
+        <h2 class="text-center">メインコンテンツ</h2>
+      </div>
+    </Container>
+  </section>
+</Layout>

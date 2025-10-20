@@ -1,0 +1,8 @@
+# Common
+node_modules
+public
+functions
+postcss.config.js
+.vscode
+src/**/*.{js,ts}
+dist/**/*.{css,js,svg}

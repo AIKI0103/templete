@@ -1,0 +1,33 @@
+---
+import Picture from '../../components/Blocks/Picture.astro'
+
+const { hero, page } = Astro.props
+const bgImage = hero.bgImage
+const HeroHeadingMainTag = hero?.mainTitle && page.type !== 'single' ? 'h1' : 'p'
+---
+
+<div data-view-over="header" class:list={['c-hero', hero?.parentTitle && 'c-hero--parent', hero?.themeClass || '']}>
+  <div class="c-hero__container">
+    <div class="c-hero-heading">
+      {
+        hero?.parentTitle && (
+          <div class="c-hero-heading-parent">
+            <span class="c-hero-heading-parent__label" set:html={hero.parentTitle} />
+          </div>
+        )
+      }
+      <HeroHeadingMainTag class="c-hero-heading-main">
+        <span class="c-hero-heading-main__label" set:html={hero.mainTitle} />
+      </HeroHeadingMainTag>
+      {
+        hero?.subTitle && (
+          <p class="c-hero-heading-sub">
+            <span class="c-hero-heading-sub__label" set:html={hero.subTitle} />
+          </p>
+        )
+      }
+    </div>
+
+    {hero?.bgImage && <Picture ext="jpg" src={`/assets/images/hero/${bgImage}`} alt="" width="1400" height="200" className="c-hero__bg" webp={true} lazyload={false} ariaHidden={false} />}
+  </div>
+</div>

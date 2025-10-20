@@ -1,0 +1,75 @@
+---
+interface Props {
+  className?: string
+  classNameWrap?: string
+  fit?: boolean
+  type?: 'ul' | 'div' | 'ol'
+  id?: string
+  hidden?: boolean
+}
+
+const { className, classNameWrap = '', fit = false, type = 'div', id, hidden = true } = Astro.props
+const fitClass = fit ? 'c-flex--fit' : ''
+
+/**
+ * レイアウト用のコンポーネント
+ * fit: true でflex-itemの高さを揃える
+ * 上下の余白を --gap-x, --gap-y で制御する
+ *
+```
+<Flex
+  fit={false}
+  className="[--gap-x:1rem] md:[--gap-x:2rem] lg:[--gap-x:4rem]"
+  classNameWrap=""
+>
+  <div className="w-full md:w-6/12 lg:w-4/12">
+    <div className="bg-theme text-white">ほげ</div>
+  </div>
+  <div className="w-full md:w-6/12 lg:w-4/12">
+    <div className="bg-theme text-white">
+      ほげ
+      <br />
+      ほげ
+    </div>
+  </div>
+  <div className="w-full md:w-6/12 lg:w-4/12">
+    <div className="bg-theme text-white">ほげ</div>
+  </div>
+</Flex>
+```
+ */
+---
+
+{
+  !hidden && !classNameWrap && !id ? (
+    type === 'ul' ? (
+      <ul class:list={['c-flex', className, fitClass]}>
+        <slot />
+      </ul>
+    ) : type === 'ol' ? (
+      <ol class:list={['c-flex', className, fitClass]}>
+        <slot />
+      </ol>
+    ) : (
+      <div class:list={['c-flex', className, fitClass]}>
+        <slot />
+      </div>
+    )
+  ) : (
+    <div id={id && id} class:list={[hidden && 'c-flex-wrap', classNameWrap]}>
+      {type === 'ul' ? (
+        <ul class:list={['c-flex', className, fitClass]}>
+          <slot />
+        </ul>
+      ) : type === 'ol' ? (
+        <ol class:list={['c-flex', className, fitClass]}>
+          <slot />
+        </ol>
+      ) : (
+        <div class:list={['c-flex', className, fitClass]}>
+          <slot />
+        </div>
+      )}
+    </div>
+  )
+}

@@ -1,0 +1,79 @@
+{
+  // Place your snippets for scss here. Each snippet is defined under a snippet name and has a prefix, body and
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  // same ids are connected.
+  // Example:
+  "omd": {
+    "scope": "sass,scss,css",
+    "prefix": "min-md:astro",
+    "body": ["@media (--min-md) {", "\t$0", "}"],
+    "description": "--min-md"
+  },
+  "olg": {
+    "scope": "sass,scss,css",
+    "prefix": "min-lg:astro",
+    "body": ["@media (--min-lg) {", "\t$0", "}"],
+    "description": "--min-lg"
+  },
+  "bmd": {
+    "scope": "sass,scss,css",
+    "prefix": "max-md:astro",
+    "body": ["@media (--max-md) {", "\t$0", "}"],
+    "description": "--max-md"
+  },
+  "blg": {
+    "scope": "sass,scss,css",
+    "prefix": "max-lg:astro",
+    "body": ["@media (--max-lg) {", "\t$0", "}"],
+    "description": "--max-lg"
+  },
+  "hover": {
+    "scope": "sass,scss,css",
+    "prefix": "hover:astro",
+    "body": ["@media (any-hover: hover) {", "\t&:hover,&:focus-visible {", "\t\t$0", "\t}", "}"],
+    "description": "hover"
+  },
+  "action": {
+    "scope": "sass,scss,css",
+    "prefix": "action:astro",
+    "body": ["@media (any-hover: hover) {", "\t&:hover,&:focus-visible {", "\t\t$0", "\t}", "}"],
+    "description": "hover"
+  },
+  "tategaki": {
+    "scope": "sass,scss,css",
+    "prefix": "tategaki:astro",
+    "body": ["-webkit-writing-mode: vertical-rl;", "-ms-writing-mode: tb-rl;", "writing-mode: vertical-rl;", "font-feature-settings: normal; // ずれたりする"],
+    "description": "tategaki"
+  },
+  "font-smoothing": {
+    "scope": "sass,scss,css",
+    "prefix": "font-smoothing:astro",
+    "body": ["-webkit-font-smoothing: antialiased;", "-moz-osx-font-smoothing: grayscale;"],
+    "description": "font-smoothing"
+  },
+  "font-smoothing-n": {
+    "scope": "sass,scss,css",
+    "prefix": "font-smoothing-n:astro",
+    "body": ["-webkit-font-smoothing: subpixel-antialiased;", "-moz-osx-font-smoothing: auto;"],
+    "description": "font-smoothing-n"
+  },
+  "karning": {
+    "scope": "sass,scss,css",
+    "prefix": "karning:astro",
+    "body": ["font-feature-settings: 'palt' 1;"],
+    "description": "karning"
+  },
+  "scrollbar-less": {
+    "scope": "sass,scss,css",
+    "prefix": "scrollbar-less:astro",
+    "body": ["-ms-overflow-style: none; /* IE, Edge 対応 */", "scrollbar-width: none; /* Firefox 対応 */", "&::-webkit-scrollbar {", "\tdisplay: none;", "}"],
+    "description": "scrollbar-less"
+  },
+  "placeholder": {
+    "scope": "sass,scss,css",
+    "prefix": "placeholder:astro",
+    "body": ["&::-webkit-input-placeholder,", "&::-moz-placeholder,", "&:-ms-input-placeholder,", "&::-ms-input-placeholder {", "\tcolor: $1;", "\tfont-weight: $2;", "}"],
+    "description": "placeholder"
+  },
+}

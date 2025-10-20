@@ -1,0 +1,102 @@
+---
+// eslint-disable-next-line import/order
+import stylesUrl from '../styles/main.scss?url'
+import '../styles/_utility.scss'
+// import '@splidejs/splide/css/core'
+
+import { siteConfig as config } from '../../site.config.mjs'
+import Breadcrumbs from '../components/Layout/Breadcrumbs.astro'
+import Footer from '../components/Layout/Footer.astro'
+import Header from '../components/Layout/Header.astro'
+import SeoHead from '../components/Layout/SeoHead.astro'
+import Sidebar from '../components/Layout/Sidebar.astro'
+
+// Astro.site
+// Astro.url.pathname
+const { page, seo, hero, breadcrumbs } = Astro.props
+const urlOrigin = Astro.url.origin + import.meta.env.BASE_URL
+const canonicalURL = seo?.canonical || new URL(Astro.url.pathname, Astro.site)
+const { siteName, ogImage, msapplicationTileColor, themeColor, charset, locale, favicon, appleTouchIcon } = config
+const title = seo?.titleTag || seo?.title + ' | ' + siteName
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <SeoHead
+      title={title}
+      charset={charset}
+      seo={seo}
+      canonicalURL={canonicalURL}
+      siteName={siteName}
+      urlOrigin={urlOrigin}
+      ogImage={ogImage}
+      locale={locale}
+      page={page}
+      msapplicationTileColor={msapplicationTileColor}
+      themeColor={themeColor}
+      favicon={favicon}
+      appleTouchIcon={appleTouchIcon}
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script id="webfont-loader" is:inline>
+      WebFontConfig = {
+        google: {
+          families: ['Noto+Sans+JP:400,500,700', 'Roboto:400,500,700'],
+        },
+      }
+      ;(function (d) {
+        var wf = d.createElement('script'),
+          s = d.scripts[0]
+        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
+        wf.async = true
+        s.parentNode.insertBefore(wf, s)
+      })(document)
+    </script>
+
+    {import.meta.env.MODE === 'production' && <link id="preload-main-css" rel="preload" href={`/assets/css/main.css`} as="style" />}
+    <link id="main-css" rel="stylesheet" href={stylesUrl} />
+    {import.meta.env.MODE === 'production' && <link id="preload-utility-css" rel="preload" href={`/assets/css/utility-tailwind.css`} as="style" />}
+    {import.meta.env.MODE === 'production' && <link id="main-utility-css" rel="stylesheet" href={`/assets/css/utility-tailwind.css`} />}
+    <link rel="preload" href={`/assets/css/main-minMD.css`} media="(min-width: 768px)" as="style" />
+    <link rel="stylesheet" href={`/assets/css/main-minMD.css`} media="(min-width: 768px)" />
+    <link rel="preload" href={`/assets/css/main-minLG.css`} media="(min-width: 1024px)" as="style" />
+    <link rel="stylesheet" href={`/assets/css/main-minLG.css`} media="(min-width: 1024px)" />
+    {page.isYubinbango && <script is:inline src={`/assets/js/libs/yubinbango.js`} defer />}
+    <script>
+      import '../js/main.js'
+    </script>
+
+    <!-- Google Tag Manager -->
+    {import.meta.env.MODE === 'production' && <script is:inline>console.log('production');</script>}
+    <!-- End Google Tag Manager -->
+  </head>
+  <body id="body" class={`l-body ${page.group ? `l-body--${page.group}` : ''}`} data-slug={page.slug ? page.slug : ''}>
+    <!-- Google Tag Manager (noscript) -->
+    {import.meta.env.MODE === 'production' && <noscript>console.log('noscript production');</noscript>}
+    <!-- End Google Tag Manager (noscript) -->
+
+    <Header isHome={page.type === 'home'} page={page} hero={hero} />
+
+    <main id="main" class="l-body__main">
+      {!page.isSimpleLayout && breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
+
+      <div class:list={['l-body__wrapper', { 'l-body__wrapper--sub': page?.sub }]}>
+        <div class="l-body__container">
+          <slot />
+        </div>
+
+        {
+          page?.sub && (
+            <div class="l-body__sub">
+              <Sidebar isHome={page.type === 'home'} page={page} />
+            </div>
+          )
+        }
+      </div>
+    </main>
+
+    <Footer isHome={page.type === 'home'} page={page} />
+  </body>
+</html>

@@ -1,0 +1,173 @@
+/* 【WordPress】the_posts_pagination() で生成されるページネーションをスタイリング
+```
+<nav class="navigation pagination" role="navigation" aria-label="投稿">
+  <h2 class="screen-reader-text">投稿ナビゲーション</h2>
+  <div class="nav-links">
+    <ul class="page-numbers">
+      <li><a class="prev page-numbers" href="http://pu-kumamoto-acjp.check-xserver.jp/news/page/2/">前へ</a></li>
+      <li>
+        <a class="page-numbers is-current-parent js-current" href="http://pu-kumamoto-acjp.check-xserver.jp/news/"
+          >1</a
+        >
+      </li>
+      <li><a class="page-numbers" href="http://pu-kumamoto-acjp.check-xserver.jp/news/page/2/">2</a></li>
+      <li><span aria-current="page" class="page-numbers current">3</span></li>
+      <li><a class="page-numbers" href="http://pu-kumamoto-acjp.check-xserver.jp/news/page/4/">4</a></li>
+      <li><a class="page-numbers" href="http://pu-kumamoto-acjp.check-xserver.jp/news/page/5/">5</a></li>
+      <li><a class="next page-numbers" href="http://pu-kumamoto-acjp.check-xserver.jp/news/page/4/">次へ</a></li>
+    </ul>
+  </div>
+</nav>
+```
+----------------------------------------------------------------- */
+
+.navigation.pagination {
+  @apply mx-auto w-full max-w-[calc(100vw-4rem)];
+}
+
+.screen-reader-text {
+  @apply absolute m-[-0.1rem] h-[0.1rem] w-[0.1rem] overflow-hidden border-0 p-0;
+  word-wrap: normal !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  clip-path: inset(50%);
+}
+
+.nav-links {
+  @apply overflow-hidden font-sans text-[1.6rem] font-regular;
+}
+
+ul.page-numbers {
+  @apply relative m-[-0.5rem] flex list-none flex-wrap items-center justify-center pb-[4rem] pl-0 md:pb-0;
+
+  li {
+    @apply flex-[0_1_auto] p-[0.5rem];
+
+    &:first-child,
+    &:last-child {
+      @apply p-0 md:p-[0.5rem];
+    }
+  }
+}
+
+.page-numbers {
+  &[href] {
+    transition:
+      color 0.4s var(--cb),
+      background-color 0.4s var(--cb),
+      transform 0.4s var(--cb);
+  }
+
+  &[href],
+  &[aria-current='page'] {
+    @apply flex h-[4rem] w-[4rem] items-center justify-center rounded-[50%] bg-gray-f5f5f5 leading-[1] text-text;
+  }
+
+  &[aria-current='page'] {
+    @apply border-[0.1rem] border-solid border-text bg-text text-white;
+  }
+
+  .prev,
+  .next {
+    @apply border-[0.1rem] border-solid border-text bg-white text-text max-md:absolute max-md:bottom-[0.5rem];
+  }
+
+  .prev {
+    @apply max-md:left-[0.8rem];
+  }
+
+  .next {
+    @apply max-md:right-[0.8rem];
+  }
+
+  &[href] {
+    @media (any-hover: hover) {
+      &:hover,
+      &:focus-visible {
+        @apply bg-text text-white no-underline;
+
+        &.prev,
+        &.next {
+          @apply bg-text text-white;
+        }
+      }
+    }
+  }
+}
+
+// 前後ページャー
+.c-pager {
+  @apply mx-auto mt-[4rem] flex w-[calc(59rem+8rem)] max-w-full flex-wrap items-center justify-center gap-x-[2rem] text-[1.4rem] md:gap-x-[4rem];
+  @apply md:flex-nowrap;
+
+  // .c-pager__home
+  &__home {
+    --btn-width: 24rem;
+    --btn-rounded: 50vh;
+    --btn-label-space: 0 0 0 1.8rem;
+
+    @apply mb-[2.5rem] w-full md:mb-0 md:w-auto;
+  }
+
+  // .c-pager__zengo
+  &__zengo {
+    @apply w-[calc(50%-1rem)] px-[0.75rem];
+    @apply md:w-auto md:px-[1.5rem];
+
+    .c-pager-btn {
+      @apply bg-gray-f5f5f5 text-text;
+      @apply max-md:min-h-[5rem];
+
+      &[href] {
+        @media (any-hover: hover) {
+          &:hover,
+          &:focus-visible {
+            @apply bg-gray-f5f5f5 shadow-[inset_0_0_0_2px] shadow-text;
+          }
+        }
+      }
+
+      &:not([href]) {
+        @apply pointer-events-none opacity-40;
+      }
+    }
+
+    // .c-pager__zengo--prev
+    &--prev {
+      --btn-label-space: 0 0 0 1.3rem;
+      @apply md:order-first;
+    }
+
+    // .c-pager__zengo--next
+    &--next {
+      --btn-i-order: 1;
+      --btn-label-space: 0 1.3rem 0 0;
+    }
+  }
+}
+
+.c-pager-btn {
+  @apply relative mx-auto flex min-h-[5rem] w-[var(--btn-width,13.4rem)] max-w-full items-center justify-center rounded-[var(--btn-rounded,50vh)] bg-text text-white;
+  transition:
+    background-color 0.4s var(--cb),
+    box-shadow 0.4s var(--cb);
+
+  &[href] {
+    @media (any-hover: hover) {
+      &:hover,
+      &:focus-visible {
+        @apply bg-theme no-underline;
+      }
+    }
+  }
+
+  // .c-pager-btn__i
+  &__i {
+    @apply order-[var(--btn-i-order,-1)];
+  }
+
+  // .c-pager-btn__label
+  &__label {
+    @apply p-[var(--btn-label-space,0)] font-regular;
+  }
+}

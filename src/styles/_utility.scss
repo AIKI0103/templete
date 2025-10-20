@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+// /* ==========================================================================
+//   Foundation
+//   Reset.cssやNormalize.cssなどを用いたブラウザのデフォルトスタイルの初期化や、
+//   プロジェクトにおける基本的なスタイルを定義します。 ページの下地としての全体の背景や、基本的なタイポグラフィなどが該当します。
+// ========================================================================== */
+@use './Foundation/base' as *;
+@use './Foundation/Settings/variable' as *;
+
+// /* ==========================================================================
+//   Layout
+//   ページ全体のレイアウトに関するスタイルを定義します。
+//   グリッドシステム、ヘッダー、フッター、サイドバーなどの主要なコンテナの配置やスタイルが含まれます。
+// ========================================================================== */
+@use './Layout/layout' as *;
+
+// /* ==========================================================================
+//   Object - Component
+//   再利用できるパターンとして、小さな単位のモジュールを定義します。
+//   出来る限り、最低限の機能を持ったものとして定義されるべきであり、それ自体が固有の幅や色などの特色を持つことは避けるのが望ましいです。
+// ========================================================================== */
+// 全案件必須のコンポーネント
+@use './Component/c-drawer' as *;
+@use './Component/c-menu-toggle' as *;
+@use './Component/c-header' as *;
+@use './Component/c-footer' as *;
+@use './Component/c-logo' as *;
+@use './Component/c-nav' as *;
+@use './Component/c-hero' as *;
+@use './Component/c-breadcrumbs' as *;
+@use './Component/c-container' as *;
+@use './Component/c-flex' as *;
+@use './Component/c-textarea' as *;
+
+// 案件ごとに任意のコンポーネント（不要なものはコメントアウト）
+@use './Component/c-feed' as *;
+@use './Component/c-post' as *;
+@use './Component/c-share' as *;
+@use './Component/c-sidebar' as *;
+@use './Component/c-form' as *;
+@use './Component/c-page-thanks' as *;
+@use './Component/c-heading' as *;
+@use './Component/c-btn' as *;
+@use './Component/c-table' as *;
+@use './Component/c-details' as *;
+@use './Component/c-dialog' as *;
+@use './Component/c-splide' as *;
+@use './Component/c-slider' as *;
+@use './Component/c-autoslide' as *;
+@use './Component/c-tab' as *;
+
+// /* ==========================================================================
+//   Vendor
+//   外部ライブラリやプラグインのスタイルを定義します。
+//   プロジェクト内で使用する他のスタイルとは独立して管理し、必要に応じて調整します。
+// ========================================================================== */
+@use './Vendor/wp-editor' as *;
+@use './Vendor/wp-pagination' as *;
+@use './Vendor/wp-password-form' as *;
+// @use './Vendor/scrollTrigger' as *;
+
+/* The integration's default injected base.css file */
+// @tailwind base;
+// @tailwind components;
+@tailwind utilities;

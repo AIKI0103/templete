@@ -1,0 +1,67 @@
+{
+  // Place your snippets for scss here. Each snippet is defined under a snippet name and has a prefix, body and
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  // same ids are connected.
+  // Example:
+  "Picture": {
+    "scope": "html,astro",
+    "prefix": "picture:astro",
+    "body": [
+      "<Picture",
+      "\text=\"jpg\"",
+      "\tsrc={`\/assets/images/$1`}",
+      "\talt=\"$2\"",
+      "\twidth={$3}",
+      "\theight={$4}",
+      "\tclassName=\"\"",
+      "\twebp={true}",
+      "\tlazyload={true}",
+      "\tmedia={}",
+      "\tmobileWidth={}",
+      "\tmobileHeight={}",
+      "\tariaHidden={false}",
+      "/>"
+    ],
+    "description": "Picture"
+  },
+  "Image": {
+    "scope": "html,astro",
+    "prefix": "img:astro",
+    "body": [
+      "<Image",
+      "\text=\"jpg\"",
+      "\tsrc={`\/assets/images/$1`}",
+      "\talt=\"$2\"",
+      "\twidth={$3}",
+      "\theight={$4}",
+      "\tclassName=\"\"",
+      "\tlazyload={true}",
+      "\tariaHidden={false}",
+      "/>"
+    ],
+    "description": "Image"
+  },
+  "flex": {
+    "scope": "html,astro",
+    "prefix": "flex:astro",
+    "body": [
+      "<Flex fit={false} type=\"div\" className=\"[--gap-x:1.5rem] [--gap-y:1.5rem]\" classNameWrap=\"\">",
+      "\t<div class=\"w-full md:w-1/2\">",
+      "\t\t$1",
+      "\t</div>",
+      "</Flex>"
+    ],
+    "description": "c-flex"
+  },
+  "container": {
+    "scope": "html,astro",
+    "prefix": "container:astro",
+    "body": [
+      "<Container size=\"base\" className=\"\">",
+      "\t$1",
+      "</Container>"
+    ],
+    "description": "c-container"
+  },
+}

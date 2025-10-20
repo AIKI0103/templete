@@ -1,0 +1,62 @@
+/* サンクスページ
+```
+```
+*/
+.c-page-thanks {
+  // .c-page-thanks__main
+  &__main {
+    @apply mx-auto w-[77rem] max-w-[calc(100%-4rem)] py-[5rem] text-[1.6rem] leading-[1.75] md:py-[7rem];
+  }
+
+  // .c-page-thanks__heading
+  &__heading {
+    @apply text-center text-[clamp(2rem,calc(24/768*100vw),2.4rem)] font-bold leading-[1.5] text-theme;
+  }
+
+  // .c-page-thanks__textarea
+  &__textarea {
+    @apply py-[3rem] text-[1.4rem] md:text-[1.6rem];
+
+    > *:not(:last-child) {
+      @apply mb-[1.5em];
+    }
+  }
+
+  // .c-page-thanks__list
+  &__list {
+    @apply list-none pl-0;
+
+    li {
+      @apply relative pl-[1.2em];
+
+      &::before {
+        @apply absolute left-0 top-1/2 h-[1.4rem] w-[1.4rem] -translate-y-[calc(50%-0.1rem)] translate-x-0 rounded-[50vh] bg-theme content-[''];
+      }
+    }
+  }
+
+  // .c-page-thanks__btn
+  &__btn {
+    @apply my-[2rem];
+
+    // .c-page-thanks__btn-link
+    &-link {
+      @apply mx-auto flex h-[6rem] w-[33rem] max-w-full items-center justify-center border-[0.2rem] border-solid border-theme bg-theme text-white;
+      transition:
+        color 0.4s var(--cb),
+        background-color 0.4s var(--cb);
+
+      @media (any-hover: hover) {
+        &:hover,
+        &:focus-visible {
+          @apply bg-white text-theme no-underline;
+        }
+      }
+    }
+
+    // .c-page-thanks__btn-label
+    &-label {
+      @apply text-center text-[1.6rem] font-bold leading-[1.4];
+    }
+  }
+}

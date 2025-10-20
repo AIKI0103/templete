@@ -1,0 +1,169 @@
+---
+import Container from '../../components/Blocks/Container.astro'
+import HeadingLine from '../../components/Blocks/HeadingLine.astro'
+import Layout from '../../layouts/Layout.astro'
+
+// ページ情報
+const page = {
+  type: 'page', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'privacy',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: 'プライバシーポリシー', // 基本必須（titleTagが優先される）
+  // titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: 'プライバシーポリシー',
+  subTitle: 'Privacy',
+  bgImage: 'privacy',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: seo.title,
+    href: '',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} breadcrumbs={customCrumbs}>
+  <div class="py-[3rem] md:py-[7rem]">
+    <Container size="md" className="">
+      <div class="py-[1.5rem]">
+        <div class="c-textarea">
+          <p class="mb-[2.5rem] text-right md:mb-[5rem]"><span class="mr-[1em]">制定日</span>2024年4月1日<br /><span class="mr-[1em]">最終改正日</span>2024年6月1日</p>
+
+          <p>◯◯◯◯◯株式会社（以下、「当社」）は、当社事業を実施する上で、下記のとおり個人情報保護方針を定め、方針を具現化するための個人情報保護マネジメントシステムを構築し個人情報の保護に努めます。</p>
+        </div>
+      </div>
+
+      <section class="py-[1.5rem]">
+        <HeadingLine className="mb-[1.5rem]">個人情報の定義</HeadingLine>
+        <div class="c-textarea">
+          <p>
+            当社は、個人情報とは、個人情報の保護に関する法律に規定される生存する個人に関する情報（氏名、生年月日、その他の特定の個人を識別することができる情報）及び身体的特徴を符号に表したもの（DNA、声紋、指紋等）及び政令等により割り当てた符号（マイナンバー、免許証番号、パスポート番号等）であると認識しています。
+          </p>
+        </div>
+      </section>
+
+      <section class="py-[1.5rem]">
+        <HeadingLine className="mb-[1.5rem]">法令等の遵守</HeadingLine>
+        <div class="c-textarea">
+          <p>当社は、個人情報について、関係法令、国が定める指針その他の規範に従い、当社において業務に従事する全ての者に対してその周知・徹底を図り、これを順守します。</p>
+        </div>
+      </section>
+
+      <section class="py-[1.5rem]">
+        <HeadingLine className="mb-[1.5rem]">個人情報の適切な利用</HeadingLine>
+        <div class="c-textarea">
+          <p>個人情報の収集にあたっては、利用目的を明示した上で、必要な範囲の情報を収集し、利用目的を通知または公表し、その範囲内で利用します。</p>
+        </div>
+      </section>
+
+      <section class="py-[1.5rem]">
+        <HeadingLine className="mb-[1.5rem]">クッキー（Cookie）及び、ウェブビーコンについて</HeadingLine>
+        <div class="c-textarea">
+          <p class="mb-[2rem] md:mb-[3rem]">
+            当社ウェブサイトでは、サイト機能の有効化やパフォーマンス測定、ソーシャルメディア機能のご提供、関連性の高いコンテンツ表示といった目的でCookieおよびウェブビーコン※1を利用しています。それらの利用は、お客様のプライバシーを侵害するものではなく、またお客様のコンピューターへ悪影響を及ぼすものでもありません。
+          </p>
+
+          <p class="mb-[2rem] md:mb-[3rem]">
+            ブラウザの設定により、Cookieを無効にすることも可能ですが、その場合、当ウェブサイトのご利用に一部制約が生じる場合がありますのでご注意ください。なお、当ウェブサイトでは、他のウェブサイ
+            トにより書き込まれたCookieやハードディスクに保存された他のデータを拝見することはありません。
+          </p>
+
+          <p class="mb-[3rem] pl-[2em] -indent-[2em] md:mb-[6rem]">
+            <span class="mr-[0.5em]">※1</span
+            >ウェブビーコンとは目には見えない小さな画像（1×1ピクセルの画像GIF）をウェブページやHTML形式の電子メールに埋め込むことで閲覧したという情報を収集するための仕組みをさします。これによりお客様のウェブページの閲覧情報／電子メールの開封／プレビュー状況を蓄積いたします。
+          </p>
+
+          <h3 class="mb-[1rem] pl-[0.9em] -indent-[0.9em] text-[clamp(1.6rem,calc(18/768*100vw),1.8rem)] font-bold leading-[1.4]">＊Google Analyticsについて</h3>
+
+          <p class="mb-[2rem] md:mb-[3rem]">
+            当社のいくつかのページでは、お客様の本サイトの訪問状況を把握するためにGoogle 社のサービスであるGoogle Analyticsを利用しています。当社のサイトでGoogle
+            Analyticsを利用しますと、当社が発行するクッキーをもとにして、Google
+            社がお客様の本サイトの訪問履歴を収集、記録、分析します。当社は、Google社からその分析結果を受け取り、お客様の本サイトの訪問状況を把握します。<br />Google
+            Analyticsにより収集、記録、分析されたお客様の情報には、特定の個人を識別する情報は一切含まれません。また、それらの情報は、Google社により同社のプライバシーポリシーに基づいて管理されます。
+          </p>
+
+          <p class="mb-[2rem] md:mb-[3rem]">
+            お客様は、ブラウザのアドオン設定でGoogle Analyticsを無効にすることにより、当社のGoogle Analytics利用によるお客様の情報の収集を停止することも可能です。Google Analyticsの無効設定は、<a
+              href="https://tools.google.com/dlpage/gaoptout?hl=ja"
+              target="_blank"
+              class="text-theme-0600ff">Google社によるオプトアウトアドオンのダウンロードページ</a
+            >で「GoogleAnalyticsオプトアウトアドオン」をダウンロードおよびインストールし、ブラウザのアドオン設定を変更することで実施することができます。なお、お客様がGoogle
+            Analyticsを無効設定した場合、お客様が訪問する本サイト以外のウェブサイトでもGoogle Analyticsは無効になりますが、お客様がブラウザのアドオンを再設定することにより、再度Google
+            Analyticsを有効にすることも可能です。
+          </p>
+
+          <p class="mb-[1.5rem]">Google Analyticsの利用規約に関する説明についてはGoogle Analyticsのサイトを、Google社のプライバシーポリシーに関する説明については同社のサイトをご覧下さい。</p>
+
+          <ul class="c-list">
+            <li class="mb-[1rem] md:mb-0">
+              Google Analyticsの利用規約：<a href="http://www.google.com/analytics/terms/jp.html" target="_blank" class="text-theme-0600ff">http://www.google.com/analytics/terms/jp.html</a>
+            </li>
+            <li class="mb-[1rem] md:mb-0">
+              Googleのプライバシーポリシー：<a href="http://www.google.com/intl/ja/policies/privacy/" target="_blank" class="text-theme-0600ff">http://www.google.com/intl/ja/policies/privacy/</a>
+            </li>
+            <li>
+              Google Analyticsオプトアウトアドオン：<a href="https://tools.google.com/dlpage/gaoptout?hl=ja" target="_blank" class="text-theme-0600ff">https://tools.google.com/dlpage/gaoptout?hl=ja</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="py-[1.5rem]">
+        <HeadingLine className="mb-[1.5rem]">個人情報の安全管理措置</HeadingLine>
+        <div class="c-textarea">
+          <p>個人情報への不正アクセス、個人情報の漏えい、滅失、またはき損の予防及び個人情報のセキュリティ体制を継続的に向上し万一の場合は速やかに是正措置を講じます。</p>
+        </div>
+      </section>
+
+      <section class="py-[1.5rem]">
+        <HeadingLine className="mb-[1.5rem]">改善措置</HeadingLine>
+        <div class="c-textarea">
+          <p>個人情報の取扱いに関する社会環境の変化に的確に対応するよう努めます。また必要に応じて本方針をはじめ各種規程等につき、変更、修正、または追加を行うなど、継続的に改善をするよう努めます。</p>
+        </div>
+      </section>
+
+      <section class="py-[1.5rem]">
+        <HeadingLine className="mb-[1.5rem]">苦情、相談への対応</HeadingLine>
+        <div class="c-textarea">
+          <p class="mb-[1rem]">個人情報取扱いに関する苦情及び相談に対しては、迅速かつ誠実に対応致します。</p>
+
+          <p class="mb-[4rem] text-right md:mb-[6rem]">
+            <span class="inline-block">◯◯◯◯◯◯◯株式会社</span>
+            <span class="ml-[2em] inline-block">代表取締役社長</span>
+            <span class="ml-[1em] inline-block">熊本太郎</span>
+          </p>
+
+          <h3 class="mb-[1.5rem] text-[clamp(1.8rem,calc(22/768*100vw),2.2rem)] font-bold leading-[1.4]">【個人情報保護方針に関するお問い合わせ先 兼 個人情報に関する苦情・相談窓口】</h3>
+
+          <address>
+            <p>
+              <span class="mr-[0.5rem] inline-block">〒150-0043</span><span class="mr-[1em] inline-block">東京都渋谷区道玄坂一丁目12番1号</span><span class="inline-block"
+                >渋谷マークシティウエスト15階</span
+              >
+            </p>
+            <p><span class="mr-[1em] inline-block">アルサーガパートナーズ株式会社</span><span class="inline-block">個人情報お問合わせ窓口</span></p>
+            <p><a href="tel:03-3461-3028" class="mr-[1em] inline-block">TEL：03-3461-3028</a><span class="inline-block">（受付時間 11:00～17:00）</span></p>
+          </address>
+        </div>
+      </section>
+    </Container>
+  </div>
+</Layout>

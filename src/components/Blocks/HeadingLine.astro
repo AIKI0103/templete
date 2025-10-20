@@ -1,0 +1,18 @@
+---
+interface Props {
+  id?: string
+  className?: string
+  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p'
+  size?: 'lg'
+}
+
+const { id, className = '', tag = 'h2', size } = Astro.props
+const Wrapper = tag === 'h1' || tag === 'h2' ? 'header' : 'div'
+const MarkUp = `${tag}`
+---
+
+<Wrapper id={id && id} class:list={['c-heading-line', className, size === 'lg' ? 'c-heading-line--lg' : undefined]}>
+  <MarkUp class:list={['c-heading-line__label']}>
+    <slot />
+  </MarkUp>
+</Wrapper>

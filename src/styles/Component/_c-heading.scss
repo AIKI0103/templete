@@ -1,0 +1,63 @@
+/* 見出し
+```
+```
+*/
+.c-heading-primary {
+  @apply flex flex-col text-[clamp(3.2rem,calc(48/768*100vw),4.8rem)];
+
+  // .c-heading-primary__label
+  &__label {
+    @apply text-[1em] font-bold leading-[1.4];
+  }
+
+  // .c-heading-primary__sub
+  &__sub {
+    @apply text-[max(1.4rem,calc(20/48*1em))] font-bold leading-[1.4];
+  }
+}
+
+.c-heading-line {
+  --fontSize: clamp(1.8rem, calc(22 / 768 * 100vw), 2.2rem);
+  --borderBase: theme('colors.gray.DEFAULT');
+  --borderColor: theme('colors.text.DEFAULT');
+
+  // .c-heading-line--lg
+  &--lg {
+    --fontSize: clamp(2.2rem, calc(30 / 768 * 100vw), 3rem);
+  }
+
+  @apply relative flex pb-[1rem] [font-size:var(--fontSize)] md:pb-[0.4em];
+
+  &::before {
+    @apply absolute bottom-0 left-0 h-[0.4rem] w-full content-[''];
+    background: linear-gradient(90deg, var(--borderColor) 0%, var(--borderColor) calc(120 / 970 * 100%), var(--borderBase) calc(120 / 970 * 100%), var(--borderBase) 100%);
+  }
+
+  // .c-heading-line__label
+  &__label {
+    @apply text-[1em] font-bold leading-[1.4];
+  }
+}
+
+.c-heading-bgLine {
+  --bgColor: theme('colors.gray.dddddd');
+  --borderColor: theme('colors.text.DEFAULT');
+
+  @apply flex flex-col-reverse rounded-[0.5rem_0.5rem_0_0] border-0 border-b-[0.2rem] border-solid border-[var(--borderColor)] bg-[var(--bgColor)] px-[1.5rem] py-[0.7rem] text-[clamp(1.8rem,calc(24/768*100vw),2.4rem)] md:px-[3rem];
+
+  // .c-heading-bgLine__label
+  &__label {
+    @apply text-[1em] font-bold leading-[1.4];
+  }
+}
+
+.c-heading-bgc {
+  --bgColor: theme('colors.text.DEFAULT');
+
+  @apply bg-[var(--bgColor)] px-[1.5rem] py-[1rem] text-[clamp(1.8rem,calc(24/768*100vw),2.4rem)] text-white md:px-[2.5rem] md:py-[1.3rem];
+
+  // .c-heading-quaternary__label
+  &__label {
+    @apply text-[1em] font-bold leading-[1.4];
+  }
+}

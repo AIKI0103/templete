@@ -1,0 +1,47 @@
+/* テーブル
+```
+```
+*/
+
+.c-table {
+  th,
+  td {
+    @apply border border-solid border-gray-dddddd px-[2rem] py-[1rem] font-medium;
+  }
+
+  thead {
+    th {
+      @apply bg-text text-center text-white;
+    }
+  }
+
+  tbody {
+    th {
+      @apply bg-gray-f5f5f5;
+    }
+  }
+
+  // .c-table--row
+  &--row {
+    @media (--max-md) {
+      tbody {
+        tr {
+          &:not(:last-of-type) {
+            td {
+              @apply border-b-0;
+            }
+          }
+        }
+
+        th,
+        td {
+          @apply block w-full;
+        }
+
+        th {
+          @apply border-b-0;
+        }
+      }
+    }
+  }
+}

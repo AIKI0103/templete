@@ -1,0 +1,19 @@
+---
+import type { InputType } from './types.ts'
+
+// type以外を継承
+interface Props
+  extends Omit<InputType, 'type' | 'value' | 'placeholder' | 'autocomplete' | 'inputmode' | 'isReadonly' | 'size' | 'maxlength' | 'minlength' | 'pattern' | 'className' | 'showValidTip'> {
+  options: string[]
+}
+
+const { id, name, labelName, options } = Astro.props
+---
+
+<span data-component="FormSelect" class="c-form-selectbox">
+  <span class="wpcf7-form-control-wrap">
+    <select name={name} id={id && id} aria-label={labelName}>
+      {options.map((option) => <option value={option}>{option}</option>)}
+    </select>
+  </span>
+</span>

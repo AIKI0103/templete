@@ -1,0 +1,33 @@
+---
+import Image from '../Blocks/Image.astro'
+
+interface Props {
+  href: string
+  id?: string
+  className?: string
+  imgSrc: string
+  title: string
+  text: string
+}
+
+const { href, id, className, imgSrc, title, text } = Astro.props
+---
+
+<div id={id && id} class:list={['c-feed-recruit', className]}>
+  <figure class="c-feed-recruit__thumb">
+    <Image ext="jpg" src={imgSrc} alt="" width={240} height={150} className="c-feed-recruit__thumb-img" lazyload={true} ariaHidden={false} />
+  </figure>
+
+  <div class="c-feed-recruit__body">
+    <h3 class="c-feed-recruit__title">{title}</h3>
+
+    <p class="c-feed-recruit__text">{text}</p>
+
+    <p class="c-feed-recruit__btn">
+      <a href={href} class="c-feed-recruit__btn-link">
+        <span class="c-feed-recruit__btn-label">詳細はこちら</span>
+        <svg width="16" height="16" class="c-feed-recruit__btn-icon" aria-hidden="true"><use href={`/assets/svg/sprite.svg#i-circle-arrow-right`}></use></svg>
+      </a>
+    </p>
+  </div>
+</div>

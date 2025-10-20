@@ -1,0 +1,17 @@
+/* SNSシェア
+```
+```
+*/
+.c-share {
+  @apply flex flex-col flex-wrap items-center justify-center border-x-0 border-y border-solid border-gray-dddddd py-[1rem] md:flex-row md:py-[1.5rem];
+
+  // .c-share__label
+  &__label {
+    @apply mb-[1rem] text-[1.6rem] leading-[1.4] text-theme md:mx-[2rem] md:mb-0;
+  }
+
+  // .c-share__lists
+  &__lists {
+    @apply flex list-none items-center justify-center gap-[2rem] pl-0 md:gap-[4rem];
+  }
+}

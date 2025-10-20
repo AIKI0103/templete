@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+// scrol-hint
+@use '../../node_modules/scroll-hint/css/scroll-hint.css' as *;
+
+// splide コアスタイルのみ
+@use '../../node_modules/@splidejs/splide/dist/css/splide-core.min.css' as *;

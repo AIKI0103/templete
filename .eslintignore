@@ -1,0 +1,6 @@
+# Common
+node_modules
+public
+dist
+.vscode
+env.d.ts

@@ -1,0 +1,9 @@
+---
+import LabelRequired from './LabelRequired.astro'
+const { id = '', for: htmlFor = '', labelName = '', isRequired = false } = Astro.props
+---
+
+<div data-component="FormLabel" id={id || undefined} class="c-form-header__label">
+  <label for={htmlFor || undefined} class="c-form-header__label-main">{labelName}</label>
+  <LabelRequired isRequired={isRequired} />
+</div>

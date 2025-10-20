@@ -1,0 +1,480 @@
+/* Webサイト全体のスタイル設定・初期化 */
+@use 'sass:string';
+@use './Settings/variable' as *;
+
+/* CSSカスタムプロパティ（CSS変数 var(--)） */
+:root {
+  /* メディアクエリー（CSSで使うことはできないがビルド後の確認のため） */
+  --min-max: '(min-width: #{$container-max}px)';
+  --min-container: '(min-width: #{$container}px)';
+  --min-lg: '(min-width: #{$lg}px)';
+  --min-md: '(min-width: #{$md}px)';
+  --max-max: '(max-width: #{$container-max - 0.02}px)';
+  --max-container: '(max-width: #{$container - 0.02}px)';
+  --max-lg: '(max-width: #{$lg - 0.02}px)';
+  --max-md: '(max-width: #{$md - 0.02}px)';
+  --landscape: '(orientation: landscape)';
+  --portrait: '(orientation: portrait)';
+  --asp-16-9: '(max-aspect-ratio: 16/9)';
+  --asp-4-3: '(max-aspect-ratio: 4/3)';
+  --retina: '(min-resolution: 2dppx)';
+
+  /* break points */
+  --bp-max: #{$container-max}px;
+  --bp-container: #{$container}px;
+  --bp-lg: #{$lg}px;
+  --bp-md: #{$md}px;
+
+  /* container size */
+  --container-max: #{$container-max * 0.1}rem;
+  --container: #{$container * 0.1}rem;
+  --container-large: #{$container-large * 0.1}rem;
+  --container-medium: #{$container-medium * 0.1}rem;
+  --container-small: #{$container-small * 0.1}rem;
+  --container-xsmall: #{$container-xsmall * 0.1}rem;
+
+  /* value */
+  --alpha: 1;
+  --height: auto;
+  --width: auto;
+  --max-width: none;
+  --margin: 0;
+  --padding: 0;
+  --color: currentcolor;
+  --bg: transparent;
+  --gap-x: 0rem;
+  --gap-y: 0rem;
+  --layout-wrap: wrap;
+  --layout-main-width: 100%;
+  --layout-sub-width: 100%; // サイドバーの幅（デスクトップ幅は_l-body.scssで設定）
+
+  /* tailwind reset */
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-blur: 0;
+  --tw-brightness: 100%;
+  --tw-contrast: 100%;
+  --tw-grayscale: 0;
+  --tw-hue-rotate: 0;
+  --tw-invert: 0;
+  --tw-saturate: 100%;
+  --tw-sepia: 0;
+  --tw-drop-shadow: 0 0 #0000;
+
+  /* cubic-bezier */
+  --cb: cubic-bezier(0.8, 0, 0.24, 1);
+
+  /* line-height ハーフ・レディングの打ち消し */
+  --leading-trim: calc((1em - 1lh) / 2);
+
+  scrollbar-gutter: stable;
+  &:has(:modal) {
+    overflow: hidden;
+  }
+}
+
+@supports not (top: 1lh) {
+  :root {
+    --leading-trim: 0px;
+  }
+}
+
+/* init ua styles */
+*,
+*::before,
+*::after {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding-left: 1.25em;
+}
+
+p {
+  text-align: justify;
+}
+
+/* list reset */
+[class*='c-list'] {
+  padding-left: 0;
+  list-style: none;
+}
+
+/* table reset */
+[class*='c-table'] {
+  table-layout: fixed;
+}
+
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+}
+
+[tabindex='-1']:focus-visible:not(:focus-visible-visible) {
+  outline: 0 !important;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+abbr[title],
+abbr[data-original-title] {
+  text-decoration: underline dotted;
+  text-decoration: underline dotted;
+  cursor: help;
+  border-bottom: 0;
+  text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+
+  &[data-reset] {
+    text-decoration: none;
+  }
+}
+
+address {
+  font-style: normal;
+  line-height: inherit;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 65%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub {
+  vertical-align: sub;
+}
+
+sup {
+  vertical-align: super;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  background-color: transparent;
+
+  @media (any-hover: hover) {
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.c-hover-underline-less:hover {
+      text-decoration: none;
+    }
+
+    &[href^='tel'] {
+      pointer-events: none;
+      cursor: text;
+      text-decoration: none;
+    }
+  }
+
+  &:not([class]) {
+    text-decoration: underline;
+  }
+
+  &[href^='tel'] {
+    text-decoration: none;
+  }
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 1em;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+  -ms-overflow-style: scrollbar;
+}
+
+em {
+  font-weight: 700;
+  font-style: inherit;
+}
+
+img,
+picture {
+  max-width: 100%;
+  border-style: none;
+}
+
+img {
+  height: auto;
+  display: block;
+}
+
+svg {
+  overflow: hidden;
+  vertical-align: middle;
+  max-width: 100%;
+  fill: currentcolor;
+  font-size: inherit;
+
+  &:not([width]),
+  &:not([height]) {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  text-align: inherit;
+  text-align: -webkit-match-parent;
+}
+
+label {
+  display: inline-block;
+}
+
+button {
+  border-radius: 0;
+  outline: none;
+  border: hidden;
+  background: transparent;
+  touch-action: manipulation;
+}
+
+button:focus-visible {
+  outline: 1px dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  margin: 0;
+  font: inherit;
+  line-height: inherit;
+}
+
+input,
+textarea,
+select {
+  @media (any-hover: none) {
+    font-size: 16px;
+  }
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+[role='button'] {
+  cursor: pointer;
+}
+
+select {
+  color: inherit;
+  word-wrap: normal;
+}
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  padding: 0;
+  appearance: button;
+  color: inherit;
+}
+
+button:not(:disabled),
+[type='button']:not(:disabled),
+[type='reset']:not(:disabled),
+[type='submit']:not(:disabled) {
+  cursor: pointer;
+}
+
+[disabled] {
+  cursor: not-allowed;
+}
+
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  border-style: none;
+}
+
+[type='radio'] {
+  border-radius: 49.9%;
+}
+
+[type='file'] {
+  cursor: pointer !important;
+}
+
+input[readonly] {
+  border: hidden !important;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  padding: 0;
+  flex: 0 0 auto;
+  margin-right: 3px;
+}
+
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+legend {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  line-height: inherit;
+  color: inherit;
+  white-space: normal;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type='search'] {
+  outline-offset: -2px;
+  appearance: none;
+}
+
+[type='search']::-webkit-search-decoration {
+  appearance: none;
+}
+
+::-webkit-file-upload-button {
+  font: inherit;
+  appearance: button;
+}
+
+output {
+  display: inline-block;
+}
+
+summary {
+  display: list-item;
+  cursor: pointer;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+iframe {
+  display: block;
+}
+
+/* init base styles */
+html {
+  font-size: 62.5%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+
+  @apply max-container:text-[calc(16/1170*62.5vw)];
+  @apply max-lg:text-rembase #{!important};
+}
+
+body {
+  overflow-wrap: anywhere; // 収まらない場合に折り返す
+  word-break: normal; // 単語の分割はデフォルトに依存
+  line-break: strict; // 禁則処理を厳格に適用
+  font-feature-settings: 'palt' 1; // メトリクス設定:ON
+  @apply min-h-screen font-sans text-base font-regular leading-normal tracking-normal text-text subpixel-antialiased;
+
+  -webkit-font-smoothing: antialiased; // antialiased | subpixel-antialiased
+  -moz-osx-font-smoothing: grayscale; // grayscale | auto
+}
